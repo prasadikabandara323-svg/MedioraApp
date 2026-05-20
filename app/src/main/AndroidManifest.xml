@@ -15,27 +15,27 @@
         <activity
             android:name=".PharmacyActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.Mediora">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".MainActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
-        <activity android:name=".PainReliefActivity" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".AntibioticsActivity" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".SupplementsActivity" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ColdFluActivity" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".baby_mother" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".diabetes_care" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".bloodpressure" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".skincare" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".medicaldevice" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".riderdetails" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".upload_prescriptions" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".enterdelivery_details" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".order_details" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".PainReliefActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".AntibioticsActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".SupplementsActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".ColdFluActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".baby_mother" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".diabetes_care" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".bloodpressure" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".skincare" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".medicaldevice" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".upload_prescriptions" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".enterdelivery_details" android:exported="false" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".order_details" android:exported="false" android:theme="@style/Theme.Mediora" />
 
     </application>
 
