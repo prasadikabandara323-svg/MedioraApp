@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8FAFC"
+    tools:ignore="HardcodedText,ContentDescription,UseCompoundDrawables,DisableBaselineAlignment">
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#D6F4FC"
+        android:paddingHorizontal="20dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Cold &amp; Flu"
+            android:textColor="#1D2A64"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnCart"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/cart"
+            app:tint="#1D2A64"
+            android:clickable="true"
+            android:focusable="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="#BCEBFC"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout android:id="@+id/navHome" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/home" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textColor="#2E42A2" android:textSize="11sp" android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/navPharmacy" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/pharmacy" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pharmacy" android:textColor="#2E42A2" android:textSize="11sp" android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/navEChanneling" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/echaneling" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#2E42A2" android:textSize="11sp" android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/navSearch" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true">
+            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/account" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#2E42A2" android:textSize="11sp" android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar"
+        android:layout_above="@id/bottom_nav"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:gravity="center_horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="2dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="15dp">
+                    <EditText
+                        android:id="@+id/etSearchColdFlu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="search.."
+                        android:textColorHint="#808080"
+                        android:textColor="#1D2A64"
+                        android:textSize="15sp"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text" />
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:layout_centerVertical="true" android:layout_alignParentEnd="true" android:src="?android:attr/actionModeWebSearchDrawable" app:tint="#808080" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="16dp">
+
+                    <LinearLayout android:id="@+id/itemParacitamol" android:layout_width="105dp" android:layout_height="wrap_content" android:layout_marginEnd="6dp" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/paracitamol" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Paracitamol" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="500mg" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.4.50" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddParacitamol" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/itemFludrex" android:layout_width="105dp" android:layout_height="wrap_content" android:layout_marginEnd="6dp" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/fludrex" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fludrex" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="24 tablets" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.2950.00" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddFludrex" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/itemPanadol" android:layout_width="105dp" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/penad" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Panadol" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="500mg" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.4.50" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddPanadol" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="16dp">
+
+                    <LinearLayout android:id="@+id/itemPiriton" android:layout_width="105dp" android:layout_height="wrap_content" android:layout_marginEnd="6dp" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/piriton" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Piriton" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4mg" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.5.50" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddPiriton" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/itemCetirizine" android:layout_width="105dp" android:layout_height="wrap_content" android:layout_marginEnd="6dp" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/cetirizine" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cetirizine" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10mg" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.7.50" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddCetirizine" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/itemLoratadine" android:layout_width="105dp" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/loratadine" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Loratadine" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10mg" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.16.50" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddLoratadine" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/hidden_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout android:id="@+id/itemStrepsils" android:layout_width="105dp" android:layout_height="wrap_content" android:layout_marginEnd="6dp" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/strepsils" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strepsils" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1 Lozenge" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.25.00" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddStrepsils" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/itemVicks" android:layout_width="105dp" android:layout_height="wrap_content" android:layout_marginEnd="6dp" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/vicksaction" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vicks 500" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1 bottle" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.200.00" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddVicks" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/itemSinarest" android:layout_width="105dp" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical" android:paddingBottom="12dp">
+                        <androidx.cardview.widget.CardView android:layout_width="85dp" android:layout_height="85dp" android:layout_marginBottom="3dp" app:cardCornerRadius="18dp" app:cardElevation="3dp">
+                            <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/sinarest" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sinarest" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="13sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1 Tablet" android:textColor="#1D2A64" android:textSize="11sp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text="Rs.18.00" android:textColor="#1D2A64" android:textStyle="bold" android:textSize="12sp" />
+                        <androidx.cardview.widget.CardView android:id="@+id/btnAddSinarest" android:layout_width="85dp" android:layout_height="26dp" app:cardBackgroundColor="#4A49C6" app:cardCornerRadius="13dp" android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:text="Add to cart" android:textColor="#FFFFFF" android:textSize="11sp" android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/see_more_button"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#4A49C6"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView android:id="@+id/tvSeeMore" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:text="See more" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvArrow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:layout_marginEnd="15dp" android:text="↓" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

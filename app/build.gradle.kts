@@ -5,11 +5,15 @@ plugins {
 
     // 🚀 Room Database එකේ කේතයන් සාර්ථකව හදන්න මේ ප්ලගින් එක අනිවාර්යයි!
     id("kotlin-kapt")
+
+    id("com.google.devtools.ksp") version "2.0.21-1.0.27"
 }
 
 android {
     namespace = "com.example.mediora"
-    compileSdk = 36
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         applicationId = "com.example.mediora"
@@ -64,6 +68,10 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Testing
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -71,4 +79,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+
+
 }
