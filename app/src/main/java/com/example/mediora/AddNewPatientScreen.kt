@@ -146,7 +146,7 @@ fun AddNewPatientScreen(navController: NavController) {
                                                 selectedGender = foundPatient.ageGender.substringAfter(" ", "Male")
                                                 contactNumber = foundPatient.contactNumber
                                                 reasonForVisit = foundPatient.reasonForVisit
-                                                previousRecords = foundPatient.previousRecords
+                                                previousRecords = foundPatient.previousRecords ?: ""
                                                 Toast.makeText(context, "Patient Profile Loaded!", Toast.LENGTH_SHORT).show()
                                             } else {
                                                 Toast.makeText(context, "No patient found with that name", Toast.LENGTH_SHORT).show()

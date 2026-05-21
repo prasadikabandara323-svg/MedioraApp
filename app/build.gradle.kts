@@ -3,10 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
-    // 🚀 Room Database එකේ කේතයන් සාර්ථකව හදන්න මේ ප්ලගින් එක අනිවාර්යයි!
     id("kotlin-kapt")
 
-    id("com.google.devtools.ksp") version "2.0.21-1.0.27"
+    id("com.google.devtools.ksp")
 }
 
 android {
