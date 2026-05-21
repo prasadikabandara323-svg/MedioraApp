@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".EBookingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Mediora" />
+
         <activity android:name=".MainActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
         <activity android:name=".PainReliefActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
         <activity android:name=".AntibioticsActivity" android:exported="false" android:theme="@style/Theme.Mediora" />

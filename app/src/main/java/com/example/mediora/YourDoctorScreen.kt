@@ -444,13 +444,13 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // 🎯 Confirm & Book සහ Delete බටන්ස්
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Button(
-                            onClick = { navController.navigate("add_new_patient_screen") },
+                            onClick = { navController.navigate(route = "add_patient_screen") },
                             modifier = Modifier
                                 .weight(1.5f)
                                 .height(54.dp)

@@ -24,7 +24,6 @@ class upload_prescriptions : AppCompatActivity() {
     private lateinit var tvFileName: TextView
     private lateinit var cvFilePreview: CardView
 
-
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             selectedImageUri = uri.toString()
@@ -33,7 +32,6 @@ class upload_prescriptions : AppCompatActivity() {
             Toast.makeText(this, "Image selected", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
         if (bitmap != null) {
@@ -48,17 +46,14 @@ class upload_prescriptions : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_prescriptions)
 
-
         database = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "mediora_db_new"
         ).fallbackToDestructiveMigration()
             .build()
 
-
         val backArrow = findViewById<ImageView>(R.id.back_arrow)
         backArrow.setOnClickListener { finish() }
-
 
         val etPatientName = findViewById<EditText>(R.id.et_patient_name)
         val etAge = findViewById<EditText>(R.id.et_age)
@@ -71,7 +66,6 @@ class upload_prescriptions : AppCompatActivity() {
 
         val btnGallery = findViewById<CardView>(R.id.btn_gallery)
         val btnTakePhoto = findViewById<CardView>(R.id.btn_take_photo)
-
 
         val bottomNav = findViewById<LinearLayout>(R.id.bottom_nav)
         val navHome = bottomNav.getChildAt(0) as LinearLayout
@@ -100,7 +94,6 @@ class upload_prescriptions : AppCompatActivity() {
             Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
         }
 
-
         btnGallery.setOnClickListener {
             galleryLauncher.launch("image/*")
         }
@@ -109,13 +102,11 @@ class upload_prescriptions : AppCompatActivity() {
             cameraLauncher.launch(null)
         }
 
-
         btnClearImage.setOnClickListener {
             selectedImageUri = ""
             cvFilePreview.visibility = View.GONE
             Toast.makeText(this, "Image removed", Toast.LENGTH_SHORT).show()
         }
-
 
         cvFilePreview.setOnClickListener {
             if (selectedImageUri.isNotEmpty() && selectedImageUri.startsWith("content://")) {
@@ -131,7 +122,6 @@ class upload_prescriptions : AppCompatActivity() {
                 Toast.makeText(this, "Preview not available for camera captures yet.", Toast.LENGTH_SHORT).show()
             }
         }
-
 
         btnSendPharmacy.setOnClickListener {
             val name = etPatientName.text.toString().trim()
@@ -159,15 +149,16 @@ class upload_prescriptions : AppCompatActivity() {
                 database.prescriptionDao().insertPrescription(newPrescription)
 
                 runOnUiThread {
-
                     val builder = AlertDialog.Builder(this@upload_prescriptions)
                     builder.setTitle("Prescription Sent Successfully! ✅")
                     builder.setMessage("We have received your prescription. Our pharmacist will review it and notify you of the total price shortly.")
                     builder.setCancelable(false)
 
+
                     builder.setPositiveButton("OK") { dialog, _ ->
                         dialog.dismiss()
-                        val intent = Intent(this@upload_prescriptions, MainActivity::class.java)
+                        val intent = Intent(this@upload_prescriptions, PharmacyActivity::class.java)
+
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         finish()
