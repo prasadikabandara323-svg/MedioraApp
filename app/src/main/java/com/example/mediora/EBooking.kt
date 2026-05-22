@@ -149,6 +149,7 @@ fun EBookingScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(LightBackground)
+
     ) {
         Column(
             modifier = Modifier
