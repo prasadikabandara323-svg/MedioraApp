@@ -1,5 +1,10 @@
 package com.example.mediora
 
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,6 +27,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,9 +35,42 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
-// නිවැරදි UI වර්ණ (Colors)
+
+class EBookingActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            val navController = rememberNavController()
+
+            NavHost(navController = navController, startDestination = "ebooking_home") {
+
+                composable("ebooking_home") {
+                    EBookingScreen(navController = navController)
+                }
+
+                composable(
+                    route = "your_doctor_screen/{doctorId}",
+                    arguments = listOf(navArgument("doctorId") { type = NavType.StringType })
+                ) { backStackEntry ->
+                    val doctorId = backStackEntry.arguments?.getString("doctorId") ?: ""
+                    YourDoctorScreen(doctorId = doctorId, navController = navController)
+                }
+
+                composable("add_patient_screen") {
+                    AddNewPatientScreen(navController = navController)
+                }
+            }
+        }
+    }
+}
+
+
 val DarkBlue = Color(0xFF1B1D4A)
 val PrimaryBlue = Color(0xFF3F51B5)
 val LightBackground = Color(0xFFF4FAFC)
@@ -45,25 +84,21 @@ data class DoctorItem(
     val imageRes: Int
 )
 
-
 data class BookingItemData(
     val id: Int,
     val title: String,
     val icon: ImageVector = Icons.Default.DateRange
 )
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EBookingScreen(navController: NavController) {
-    var selectedTab by remember { mutableStateOf("Home") }
+    var selectedTab by remember { mutableStateOf("E-Channeling") }
     var selectedCategory by remember { mutableStateOf("All") }
-
     var discountText by remember { mutableStateOf("Get 20% Discount!") }
     var discountSubText by remember { mutableStateOf("On your first E-Channeling booking") }
-
-
     var searchQuery by remember { mutableStateOf("") }
-
 
     val bookingsList = remember {
         mutableStateListOf(
@@ -71,7 +106,6 @@ fun EBookingScreen(navController: NavController) {
             BookingItemData(2, "Dr. Danindu Jorge - Wednesday at 04:00 PM", Icons.Default.CheckCircle)
         )
     }
-
 
     var bookingInput by remember { mutableStateOf("") }
     var editingBookingId by remember { mutableStateOf<Int?>(null) }
@@ -88,7 +122,6 @@ fun EBookingScreen(navController: NavController) {
         )
     }
 
-
     val mappedCategoryFromSymptom = remember(searchQuery) {
         val query = searchQuery.lowercase().trim()
         when {
@@ -100,20 +133,15 @@ fun EBookingScreen(navController: NavController) {
         }
     }
 
-
     val filteredDoctors = allDoctors.filter { doc ->
         val matchesCategory = selectedCategory == "All" || doc.category.equals(selectedCategory, ignoreCase = true)
-
         val matchesSearch = if (searchQuery.isBlank()) {
             true
         } else if (mappedCategoryFromSymptom != null) {
-
             doc.category.equals(mappedCategoryFromSymptom, ignoreCase = true)
         } else {
-
             doc.name.contains(searchQuery, ignoreCase = true) || doc.specialty.contains(searchQuery, ignoreCase = true)
         }
-
         matchesCategory && matchesSearch
     }
 
@@ -121,6 +149,7 @@ fun EBookingScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(LightBackground)
+
     ) {
         Column(
             modifier = Modifier
@@ -129,7 +158,6 @@ fun EBookingScreen(navController: NavController) {
                 .verticalScroll(rememberScrollState())
         ) {
             HeaderSection(navController = navController)
-
 
             Card(
                 modifier = Modifier
@@ -170,7 +198,6 @@ fun EBookingScreen(navController: NavController) {
             }
 
             FeaturedDoctorCards(doctors = filteredDoctors, navController = navController)
-
             SectionTitle("Find a doctor with Specialist")
             CategoryRow(
                 selectedCategory = selectedCategory,
@@ -194,10 +221,8 @@ fun EBookingScreen(navController: NavController) {
             SectionTitle("Upcoming Appointment")
             UpcomingAppointmentCard()
 
-            // 🎯 E-CHANNELING BOOKINGS SECTION WITH CRUD 🎯
             SectionTitle("E-Channeling Bookings Management")
 
-            // ➕/✏️ Create & Update Input Section
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -234,7 +259,6 @@ fun EBookingScreen(navController: NavController) {
                                     }
                                     editingBookingId = null
                                 } else {
-
                                     bookingsList.add(BookingItemData(nextId, bookingInput))
                                     nextId++
                                 }
@@ -251,15 +275,10 @@ fun EBookingScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(10.dp))
 
-
             ChannelingBookingsSection(
                 bookings = bookingsList,
-                onDeleteClick = { booking ->
-
-                    bookingsList.remove(booking)
-                },
+                onDeleteClick = { booking -> bookingsList.remove(booking) },
                 onBookingClick = { booking ->
-
                     bookingInput = booking.title
                     editingBookingId = booking.id
                 }
@@ -276,6 +295,7 @@ fun EBookingScreen(navController: NavController) {
         }
     }
 }
+
 
 @Composable
 fun HeaderSection(navController: NavController) {
@@ -343,6 +363,7 @@ fun FeaturedDoctorCardItem(id: String, name: String, specialty: String, imageRes
         modifier = modifier
             .height(120.dp)
             .shadow(3.dp, shape = RoundedCornerShape(24.dp))
+
             .clickable { navController.navigate("your_doctor_screen/$id") },
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = IconBackgroundBlue)
@@ -497,7 +518,8 @@ fun TopDoctorCardItem(id: String, name: String, specialty: String, imageRes: Int
         modifier = Modifier
             .width(210.dp)
             .height(100.dp)
-            .shadow(2.dp, shape = RoundedCornerShape(22.dp)),
+            .shadow(2.dp, shape = RoundedCornerShape(22.dp))
+            .clickable { navController.navigate("your_doctor_screen/$id") },
         shape = RoundedCornerShape(22.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
     ) {
@@ -683,17 +705,15 @@ fun BookingItem(booking: BookingItemData, onDelete: () -> Unit, onEditSelect: ()
 
 @Composable
 fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
+    // 👈 සාමාන්‍ය Activity එකකට මාරු වෙන්න Context එක ලබා ගැනීම
+    val context = LocalContext.current
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(72.dp),
         shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-        colors = CardColors(
-            containerColor = Color(0xFFD0E8F2),
-            contentColor = Color.Unspecified,
-            disabledContainerColor = Color.Unspecified,
-            disabledContentColor = Color.Unspecified
-        ),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFD0E8F2)),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
         Row(
@@ -702,7 +722,13 @@ fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             BottomNavItem(R.drawable.home, "Home", selectedTab == "Home") { onTabSelected("Home") }
-            BottomNavItem(R.drawable.pharmacy, "Pharmacy", selectedTab == "Pharmacy") { onTabSelected("Pharmacy") }
+
+            // 🔄 මෙන්න මෙතන මම Intent එකක් දාලා කෙලින්ම PharmacyActivity එකට යන විදිහට හැදුවා:
+            BottomNavItem(R.drawable.pharmacy, "Pharmacy", selectedTab == "Pharmacy") {
+                onTabSelected("Pharmacy")
+                context.startActivity(Intent(context, PharmacyActivity::class.java))
+            }
+
             BottomNavItem(R.drawable.echannel, "E-Channeling", selectedTab == "E-Channeling") { onTabSelected("E-Channeling") }
             BottomNavItem(R.drawable.account, "Account", selectedTab == "Account") { onTabSelected("Account") }
         }

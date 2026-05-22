@@ -86,11 +86,11 @@ class ColdFluActivity : AppCompatActivity() {
             if (hiddenLayout.visibility == View.GONE) {
                 hiddenLayout.visibility = View.VISIBLE
                 tvSeeMore.text = "See less"
-                tvArrow.text = "↑"
+                tvArrow.text = ""
             } else {
                 hiddenLayout.visibility = View.GONE
                 tvSeeMore.text = "See more"
-                tvArrow.text = "↓"
+                tvArrow.text = ""
             }
         }
 
@@ -121,7 +121,7 @@ class ColdFluActivity : AppCompatActivity() {
                     hiddenLayout.visibility = View.GONE
                     btnSeeMore.visibility = View.VISIBLE
                     tvSeeMore.text = "See more"
-                    tvArrow.text = "↓"
+                    tvArrow.text = ""
                 }
 
                 for (i in namesList.indices) {

@@ -1,17 +1,38 @@
 package com.example.mediora
-import android.content.Context
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+
+@Database(
+    entities = [
+        Patient::class,
+        CartItem::class,
+        PharmacyOrder::class,
+        DeliveryDetails::class,
+        PrescriptionDetails::class
+    ],
+    version = 4,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
+
     abstract fun patientDao(): PatientDao
-    abstract fun pharmacyDao(): PharmacyDao
+
 
     abstract fun cartDao(): CartDao
 
+
+    abstract fun pharmacyDao(): PharmacyDao
+
+
+    abstract fun deliveryDao(): DeliveryDao
+
+
+    abstract fun prescriptionDao(): PrescriptionDao
 
     companion object {
         @Volatile
@@ -23,13 +44,13 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "mediora_database"
-                ).build()
+                )
+
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
-    abstract fun deliveryDao(): DeliveryDao
-
-    abstract fun prescriptionDao(): PrescriptionDao
 }

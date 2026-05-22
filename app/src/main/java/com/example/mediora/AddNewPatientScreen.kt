@@ -43,7 +43,6 @@ fun AddNewPatientScreen(navController: NavController) {
     var reasonForVisit by remember { mutableStateOf("") }
     var previousRecords by remember { mutableStateOf("") }
 
-    // 🆕 අලුතින් එකතු කළ දත්ත Fields
     var emergencyContact by remember { mutableStateOf("") }
     var nicNumber by remember { mutableStateOf("") }
     var selectedGender by remember { mutableStateOf("Male") }
@@ -51,7 +50,6 @@ fun AddNewPatientScreen(navController: NavController) {
 
     var selectedTab by remember { mutableStateOf("E-Channeling") }
 
-    // 🔍 Search සඟවන/සොයන අගය තියාගන්න වෙනස් කළ Variable එක
     var searchQuery by remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -109,7 +107,7 @@ fun AddNewPatientScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(15.dp))
 
-            // --- 2. SINGLE SEARCH BAR
+            // --- 2. SINGLE SEARCH BAR ---
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -138,7 +136,6 @@ fun AddNewPatientScreen(navController: NavController) {
                                 .clickable {
                                     if (searchQuery.isNotBlank()) {
                                         coroutineScope.launch {
-
                                             val foundPatient = database.patientDao().getPatientByName(searchQuery)
                                             if (foundPatient != null) {
                                                 patientName = foundPatient.patientName
@@ -305,15 +302,19 @@ fun AddNewPatientScreen(navController: NavController) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = "Clear", tint = Color.White, modifier = Modifier.size(24.dp))
                 }
 
+
                 Button(
                     onClick = {
-                        navController.popBackStack()
+                        navController.navigate("ebooking_home") {
+                            
+                            popUpTo("ebooking_home") { inclusive = true }
+                        }
                     },
                     modifier = Modifier.weight(1f).height(48.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
                     shape = RoundedCornerShape(18.dp)
                 ) {
-                    Text(text = "Cancel", fontSize = 16.sp, color = Color.White, fontWeight = FontWeight.Medium)
+                    Text(text = "Delete", fontSize = 16.sp, color = Color.White, fontWeight = FontWeight.Medium)
                 }
             }
 

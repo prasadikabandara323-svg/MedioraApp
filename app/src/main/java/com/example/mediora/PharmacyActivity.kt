@@ -8,11 +8,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 import androidx.cardview.widget.CardView
 
-class PharmacyActivity : AppCompatActivity() {
-
+class PharmacyActivity : ComponentActivity() {
 
     private lateinit var categoryLayouts: List<LinearLayout>
     private lateinit var categoryNames: List<String>
@@ -23,7 +22,6 @@ class PharmacyActivity : AppCompatActivity() {
 
         val btnBack = findViewById<View>(R.id.btnBack)
         val etSearch = findViewById<EditText>(R.id.etSearch)
-
 
         val btnUploadPrescription = findViewById<CardView>(R.id.btnUploadPrescription)
         btnUploadPrescription.setOnClickListener {
@@ -46,9 +44,7 @@ class PharmacyActivity : AppCompatActivity() {
         val navHome = findViewById<LinearLayout>(R.id.navHome)
         val navPharmacy = findViewById<LinearLayout>(R.id.navPharmacy)
         val navEChanneling = findViewById<LinearLayout>(R.id.navEChanneling)
-
         val navAccount = findViewById<LinearLayout>(R.id.navSearch)
-
 
         btnPainRelief.setOnClickListener {
             startActivity(Intent(this, PainReliefActivity::class.java))
@@ -86,13 +82,11 @@ class PharmacyActivity : AppCompatActivity() {
             startActivity(Intent(this, medicaldevice::class.java))
         }
 
-
         btnBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
-
 
         navHome.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
@@ -103,15 +97,14 @@ class PharmacyActivity : AppCompatActivity() {
             Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
         }
 
+
         navEChanneling.setOnClickListener {
-            Toast.makeText(this, "E-Channeling page is not connected yet", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
         }
-
-
         navAccount.setOnClickListener {
             Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
         }
-
 
         categoryLayouts = listOf(
             btnPainRelief, btnAntibiotics, btnVitamins, btnColdFlu,
@@ -127,13 +120,11 @@ class PharmacyActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
                 filterCategories(s.toString())
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
-
     }
 
     private fun filterCategories(query: String) {
@@ -141,9 +132,9 @@ class PharmacyActivity : AppCompatActivity() {
 
         for (i in categoryNames.indices) {
             if (categoryNames[i].contains(lowerCaseQuery)) {
-                categoryLayouts[i].visibility = View.VISIBLE // Show if matched
+                categoryLayouts[i].visibility = View.VISIBLE
             } else {
-                categoryLayouts[i].visibility = View.GONE // Hide if mismatched
+                categoryLayouts[i].visibility = View.GONE
             }
         }
     }
