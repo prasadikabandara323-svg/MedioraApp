@@ -450,7 +450,7 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
                     ) {
                         Button(
                             // 🚀 සිරාවටම වැඩ කරන කෑල්ල!
-                            onClick = { navController.navigate(route = "add_patient_screen") },
+                            onClick = { navController.navigate(route = "add_new_patient_screen") },
                             modifier = Modifier
                                 .weight(1.5f)
                                 .height(54.dp)
