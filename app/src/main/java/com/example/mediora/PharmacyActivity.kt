@@ -97,11 +97,14 @@ class PharmacyActivity : ComponentActivity() {
             Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
         }
 
-
+        // ➡️ මෙන්න මෙතන තිබ්බ වැරැද්ද හැදුවා මැනික! E-Channeling අයිකන් එක ක්ලික් කළාම MainActivity එක හරහා E-Booking එකට යන්න හැදුවා.
         navEChanneling.setOnClickListener {
-            val intent = Intent(this, EBookingActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("NAVIGATE_TO", "E_BOOKING")
             startActivity(intent)
+            finish()
         }
+
         navAccount.setOnClickListener {
             Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
         }

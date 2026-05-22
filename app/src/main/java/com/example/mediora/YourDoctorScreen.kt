@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
+
 @Composable
 fun YourDoctorScreen(navController: NavController, doctorId: String) {
 
@@ -124,7 +125,7 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
         )
         else -> Doctor(
             id = "doc_6",
-            name = "Dr: Nimal Fernando",
+            name = "Dr: Nimalka Fernando",
             specialty = "Cardiologist",
             imageRes = R.drawable.doc6,
             date = "Monday 31 May 2026",
@@ -153,7 +154,7 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
                 .verticalScroll(rememberScrollState())
         ) {
 
-            // ⬅️ ✉️ Top Bar
+            // ⬅️ Top Bar
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -189,7 +190,6 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
                 }
             }
 
-
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -215,7 +215,6 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
                 }
             }
 
-
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -229,7 +228,6 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    // Specialty & Name
                     Text(
                         text = doctor.specialty,
                         color = Color(0xFF1E88E5),
@@ -324,7 +322,7 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // 💵 Total Fee & Badge
+                    // 💵 Total Fee
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -382,7 +380,7 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // ⭐ Patient Reviews Section
+                    // ⭐ Patient Reviews
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(
                             text = "Patient Reviews",
@@ -438,18 +436,20 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
                                 .size(55.dp)
                                 .clip(CircleShape)
                                 .shadow(2.dp, CircleShape)
-                                .clickable { /* Chatbot Action */ }
+                                .clickable { /* Action */ }
                         )
                     }
 
                     Spacer(modifier = Modifier.height(20.dp))
 
+                    // 🎯 Confirm & Book Button
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Button(
+                            // 🚀 සිරාවටම වැඩ කරන කෑල්ල!
                             onClick = { navController.navigate(route = "add_patient_screen") },
                             modifier = Modifier
                                 .weight(1.5f)

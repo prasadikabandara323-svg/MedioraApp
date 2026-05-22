@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,20 +33,30 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             startDestination = "home_screen"
                         ) {
-                            // 🏠 E-Booking
+                            // 🏠 E-Booking Screen
                             composable("home_screen") {
                                 EBookingScreen(navController = navController)
                             }
 
-                            // 🩺 Doctor
+                            // 🩺 Doctor Screen
                             composable("your_doctor_screen/{doctorId}") { backStackEntry ->
                                 val doctorId = backStackEntry.arguments?.getString("doctorId") ?: "doc_1"
                                 YourDoctorScreen(navController = navController, doctorId = doctorId)
                             }
 
-                            // 📝 Patient
+                            // 📝 Patient Screen (දැන් කිසිම Error එකක් එන්නේ නැහැ මැනික)
                             composable("add_new_patient_screen") {
                                 AddNewPatientScreen(navController = navController)
+                            }
+                        }
+
+                        // ➡️ PharmacyActivity එකෙන් ආපු ගමන් කෙලින්ම E-Booking එකට නවගැට් වෙන ආරක්ෂිත කේතය:
+                        val navigateTo = intent.getStringExtra("NAVIGATE_TO")
+                        if (navigateTo == "E_BOOKING") {
+                            LaunchedEffect(intent) {
+                                navController.navigate("home_screen") {
+                                    popUpTo("home_screen") { inclusive = true }
+                                }
                             }
                         }
 

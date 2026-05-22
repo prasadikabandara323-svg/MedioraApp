@@ -254,12 +254,16 @@ fun AddNewPatientScreen(navController: NavController) {
                     onClick = {
                         if (patientName.isNotBlank() && contactNumber.isNotBlank()) {
                             coroutineScope.launch {
+                                // 🚀 මෙන්න මෙතන යාළුවා ලියපු වැරැද්ද හැදුවා!
+                                // (අලුත් variables ටිකත් ඩේටාබේස් එකට යන විදිහට කෝඩ් එක අප්ඩේට් කළා)
                                 val newPatient = Patient(
                                     patientName = patientName,
                                     ageGender = "$age $selectedGender",
                                     contactNumber = contactNumber,
                                     reasonForVisit = reasonForVisit,
-                                    previousRecords = previousRecords
+                                    previousRecords = previousRecords,
+                                    emergencyContact = emergencyContact, // 👈 එකතු කළා
+                                    nicNumber = nicNumber // 👈 එකතු කළා
                                 )
                                 database.patientDao().insertPatient(newPatient)
                                 Toast.makeText(context, "Patient Saved Successfully!", Toast.LENGTH_SHORT).show()
@@ -454,11 +458,4 @@ fun EditableFormRow(label: String, value: String, bgColor: Color, onValueChange:
         )
     }
     HorizontalDivider(color = Color.White, thickness = 1.dp)
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun AddNewPatientPreview() {
-    val dummyNavController = rememberNavController()
-    AddNewPatientScreen(navController = dummyNavController)
 }
