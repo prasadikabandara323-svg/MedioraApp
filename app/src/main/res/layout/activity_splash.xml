@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://tools.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4FAFF"
+    tools:ignore="ContentDescription">
+
+    <LinearLayout
+        android:id="@+id/logoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp">
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:src="@drawable/medilogo" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="312dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/imgWave1"
+            android:layout_width="338dp"
+            android:layout_height="313dp"
+            android:layout_gravity="bottom"
+            android:scaleType="fitXY"
+            android:src="@drawable/wave1" />
+
+        <ImageView
+            android:id="@+id/imgWave2"
+            android:layout_width="353dp"
+            android:layout_height="278dp"
+            android:layout_gravity="bottom"
+            android:scaleType="fitXY"
+            android:src="@drawable/wave2" />
+
+        <ImageView
+            android:id="@+id/imgWave3"
+            android:layout_width="378dp"
+            android:layout_height="238dp"
+            android:layout_gravity="bottom"
+            android:scaleType="fitXY"
+            android:src="@drawable/wave3" />
+
+    </FrameLayout>
+</RelativeLayout>

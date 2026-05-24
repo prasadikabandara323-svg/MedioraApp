@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.Mediora" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#000080</item>
+        <item name="colorPrimaryDark">#000080</item>
+        <item name="colorAccent">#5C5CE0</item>
 
-    <style name="Theme.Mediora" parent="android:Theme.Material.Light.NoActionBar" />
+        <item name="android:windowBackground">#F4FAFF</item>
+    </style>
+
+    <style name="LoginInputStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/rounded_input_bg</item>
+        <item name="android:textColorHint">#888</item>
+    </style>
 </resources>

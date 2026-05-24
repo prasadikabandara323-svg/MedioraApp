@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF5FF">
+
+    <RelativeLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#FFD0E8F2"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView android:id="@+id/btnBack" android:layout_width="38dp" android:layout_height="38dp" android:layout_centerVertical="true" android:src="@drawable/arrow" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:text="Card Details" android:textColor="#0E3982" android:textSize="25sp" android:textStyle="bold" />
+        <ImageView android:id="@+id/btnMail" android:layout_width="38dp" android:layout_height="38dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/mail" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#FFD0E9F3"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout android:id="@+id/navHome" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/home" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
+        <LinearLayout android:id="@+id/navPharmacy" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/pharmacy" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pharmacy" android:textColor="#0E3982" android:textSize="10sp" /></LinearLayout>
+        <LinearLayout android:id="@+id/navEChanneling" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/echaneling" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#0E3982" android:textSize="10sp" /></LinearLayout>
+        <LinearLayout android:id="@+id/navAccount" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/account" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="10sp" /></LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottomNav">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout android:id="@+id/layoutCardIcons" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:orientation="horizontal" android:layout_marginBottom="20dp">
+                <ImageView android:layout_width="50dp" android:layout_height="35dp" android:src="@drawable/visa" android:layout_marginEnd="15dp"/>
+                <ImageView android:layout_width="65dp" android:layout_height="45dp" android:src="@drawable/master" android:layout_marginEnd="15dp"/>
+                <ImageView android:layout_width="65dp" android:layout_height="35dp" android:src="@drawable/card2" android:layout_marginEnd="15dp"/>
+                <ImageView android:layout_width="40dp" android:layout_height="35dp" android:src="@drawable/amarican" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCardLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Card number"
+                android:textColor="#0E3982"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/card_bg">
+                <EditText
+                    android:id="@+id/etCardNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="40dp"
+                    android:hint="Card number"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/security"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout android:id="@+id/layoutError" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="start|center_vertical" android:layout_marginTop="5dp">
+                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:src="@drawable/error_icon" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="5dp" android:text="Please enter card number" android:textColor="#FF0000" android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:orientation="horizontal">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="*Expiry Date" android:textColor="#0E3982" android:textStyle="bold"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="15dp" android:text="*CCV" android:textColor="#0E3982" android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="5dp">
+                <EditText android:id="@+id/etExpiry" android:layout_width="0dp" android:layout_height="50dp" android:layout_weight="1" android:background="@drawable/card_bg" android:hint="MM/YY" android:paddingStart="15dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/card_bg">
+                    <EditText
+                        android:id="@+id/etCCV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="40dp"
+                        android:hint="3-4 DIGIT"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/lock"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/security" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="We protect your card details" android:textColor="#FF0000" android:textSize="13sp" />
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvSecurity" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="• All transactions are processed through SSL/TLS secure connections\n• We comply with PCI DSS industry-standard security measures" android:textColor="#0E3982" android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnPay"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/rounded_button"
+                android:text="Save Card"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnConfirmPayment"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_button"
+                android:text="Confirm Payment"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

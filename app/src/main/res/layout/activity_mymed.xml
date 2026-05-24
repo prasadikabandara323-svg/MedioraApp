@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF5FF">
+
+    <RelativeLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#D2E8FF"
+        android:paddingHorizontal="15dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="My Meds"
+            android:textColor="#0E3982"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnMailNotification"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/mail" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutSearch"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/layoutHeader"
+        android:paddingHorizontal="20dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:elevation="3dp"
+            android:paddingHorizontal="15dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/edtSearchMeds"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="Search for meds..."
+                android:textColorHint="#BCBCBC"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/search" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutSearch"
+        android:orientation="horizontal"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="15dp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtCurrentDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SAT"
+                android:textColor="#2BBED4"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:background="@android:color/white"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="8dp"
+                android:elevation="2dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtTakenStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0/0 taken today"
+                android:textColor="#0E3982"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtCurrentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="08:00 AM"
+                android:textColor="#0E3982"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutStatus"
+        android:layout_above="@id/layoutActions"
+        android:paddingHorizontal="20dp"
+        android:layout_marginVertical="10dp">
+
+        <LinearLayout
+            android:id="@+id/layoutMedsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layoutBottomNav"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/btnAddMed"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/pharmacy"
+            android:layout_marginBottom="15dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="30dp">
+
+            <Button
+                android:id="@+id/btnDeleteMed"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:background="#7C51DD"
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnEditMed"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#7C51DD"
+                android:text="Edit"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="#D0E8F2"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/home" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textColor="#0E3982" android:textSize="11sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="21dp" android:layout_height="23dp" android:src="@drawable/pharmacy" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pharmacy" android:textColor="#0E3982" android:textSize="11sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/echaneling" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#0E3982" android:textSize="11sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/account" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="11sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

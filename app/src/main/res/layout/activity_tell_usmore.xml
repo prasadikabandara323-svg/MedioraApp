@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4FAFF"
+    android:padding="16dp"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tell Us More"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#000080"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp">
+                    <TextView android:text="Age: " android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold"/>
+                    <EditText android:id="@+id/etAge" android:hint="enter age" android:background="@null" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:text="Gender: "
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"/>
+                    <Spinner
+                        android:id="@+id/spinnerGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp">
+                    <TextView android:text="Height(cm/inch): " android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold"/>
+                    <EditText android:id="@+id/etHeight" android:hint="enter height" android:background="@null" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp">
+                    <TextView android:text="Weight (kg): " android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold"/>
+                    <EditText android:id="@+id/etWeight" android:hint="enter weight" android:background="@null" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/blood"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView
+                        android:text="Select Blood Group:"
+                        android:textStyle="bold"
+                        android:textColor="#000080"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinnerBloodGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <EditText
+                    android:id="@+id/etGenotype"
+                    android:hint="Genotype"
+                    android:background="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etDonorStatus"
+                    android:hint="Blood Donor Status"
+                    android:background="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout
+                android:id="@+id/llChronicContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView android:text="Chronic Conditions" android:textStyle="bold" android:textSize="20sp" android:textColor="#000080" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/btnAddChronic"
+                        android:src="@android:drawable/ic_input_add"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="Add Condition"/>
+                </RelativeLayout>
+                <CheckBox android:id="@+id/cbDiabetes" android:text="Diabetes" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <CheckBox android:id="@+id/cbHypertension" android:text="Hypertension" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            android:layout_marginBottom="16dp">
+            <LinearLayout
+                android:id="@+id/llAllergiesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView android:text="Allergies" android:textStyle="bold" android:textSize="20sp" android:textColor="#000080" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/btnAddAllergy"
+                        android:src="@android:drawable/ic_input_add"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="Add Allergy"/>
+                </RelativeLayout>
+                <CheckBox android:id="@+id/cbDrugAllergies" android:text="Drug Allergies" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <CheckBox android:id="@+id/cbFoodAllergies" android:text="Food Allergies" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Update Details"
+            android:backgroundTint="#5C5CE0"
+            android:layout_marginBottom="30dp"/>
+
+    </LinearLayout>
+</ScrollView>

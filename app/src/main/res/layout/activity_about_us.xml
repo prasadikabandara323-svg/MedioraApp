@@ -1,0 +1,56 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#EAF5FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Mediora"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#0E3982"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mediora is a comprehensive healthcare platform powered by modern technology, designed to simplify your health management. We guide you to access quality medical services easily from the comfort of your home."
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Key Services We Provide:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#0E3982"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Book Appointments: Easily schedule visits with experienced doctors at your preferred time.\n\n• Medicine Orders: Order your prescribed medicines through our pharmacy service and get them delivered to your doorstep.\n\n• Medication Reminders: Get timely notifications to ensure you never miss a dose.\n\n• Laboratory &amp; Imaging: Fast and convenient facilities for medical tests and scans (E-Channeling).\n\n• Emergency Support: Instant access to emergency contact services when you need them most."
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:lineSpacingExtra="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Our mission is to make healthcare services accessible, reliable, and convenient for everyone."
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:textColor="#0E3982"/>
+
+    </LinearLayout>
+</ScrollView>
