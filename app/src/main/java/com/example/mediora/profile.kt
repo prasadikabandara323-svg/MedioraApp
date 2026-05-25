@@ -36,13 +36,13 @@ class ProfileActivity : AppCompatActivity() {
     private var isEditMode = false
     private var imageUri: Uri? = null
 
-    // පින්තූරය තෝරාගන්නා Launcher එක (Permission එකත් සමඟ)
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK && result.data != null) {
             val selectedImageUri = result.data?.data
             if (selectedImageUri != null) {
-                // Persistent Permission ලබාගැනීම
-                contentResolver.takePersistableUriPermission(selectedImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+                contentResolver.takePersistableUriPermission(selectedImageUri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
                 imageUri = selectedImageUri
                 imgProfile.setImageURI(imageUri)
@@ -57,6 +57,29 @@ class ProfileActivity : AppCompatActivity() {
         val btnBack = findViewById<ImageView>(R.id.btnBack)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         val btnEditProfile = findViewById<Button>(R.id.btnEditProfile)
+
+
+
+
+        // Menu Bar Navigation Links
+        findViewById<LinearLayout>(R.id.navHome).setOnClickListener {
+            val intent = Intent(this, home::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<LinearLayout>(R.id.navPharmacy).setOnClickListener {
+            val intent = Intent(this, PharmacyActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<LinearLayout>(R.id.navEChanneling).setOnClickListener {
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<LinearLayout>(R.id.navAccount).setOnClickListener {
+            Toast.makeText(this, "You are already on the profile page", Toast.LENGTH_SHORT).show()
+        }
 
         txtName = findViewById(R.id.txtName)
         txtBlood = findViewById(R.id.txtBloodGroup)
@@ -75,12 +98,15 @@ class ProfileActivity : AppCompatActivity() {
 
         btnBack?.setOnClickListener { finish() }
 
-        // පින්තූරය මත ක්ලික් කළ විට gallery විවෘත වීම
         imgProfile.setOnClickListener {
             if (isEditMode) {
-                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                intent.type = "image/*"
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 pickImageLauncher.launch(intent)
+            } else {
+                Toast.makeText(this, "Click 'Edit Profile' first!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -157,7 +183,7 @@ class ProfileActivity : AppCompatActivity() {
                     txtHeight.text = "Height: ${it.height} cm"
                     txtWeight.text = "Weight: ${it.weight} kg"
 
-                    // පින්තූරය Load කිරීම (Glide සමඟ)
+
                     if (!it.profilePhotoUri.isNullOrEmpty()) {
                         Glide.with(this@ProfileActivity)
                             .load(Uri.parse(it.profilePhotoUri))

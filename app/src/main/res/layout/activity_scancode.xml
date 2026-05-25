@@ -53,18 +53,31 @@
             android:gravity="center"
             android:orientation="vertical">
             <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/home2" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textColor="#0E3982" android:textSize="15sp" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#0E3982"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/navPharmacy"
-            android:layout_width="0dp"
+            android:id="@+id/navPharmacy"  android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/plus" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pharmacy" android:textColor="#0E3982" android:textSize="10sp" />
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/plus" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pharmacy"
+                android:textColor="#0E3982"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +98,11 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/account1" />
+            <ImageView
+
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/account1" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>

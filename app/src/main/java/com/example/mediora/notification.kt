@@ -17,6 +17,7 @@ class Notification : ComponentActivity() {
         val switchMedicalAlerts = findViewById<Switch>(R.id.switchMedicalAlerts)
         val switchHealthTips = findViewById<Switch>(R.id.switchHealthTips)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
+
         val btnBack = findViewById<ImageView>(R.id.btnBack)
 
         // 2. Bottom Navigation Bar Layouts (XML එකේ ඇති ID වලට අනුව)

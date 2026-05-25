@@ -38,7 +38,7 @@
         <activity android:name=".CardDetailsActivity" android:exported="false" />
         <activity android:name=".PaymentActivity" android:exported="false" />
         <activity android:name=".ProfileActivity" android:exported="false" android:theme="@style/Theme.Mediora" />
-        <activity android:name=".ScannerActivity" android:exported="true" android:theme="@style/Theme.Mediora" />
+        <activity android:name=".ScancodeActivity" android:exported="true" android:theme="@style/Theme.Mediora" />
         <activity android:name=".LoginActivity" android:exported="true" android:theme="@style/Theme.Mediora" />
         <activity android:name=".SignupActivity" android:exported="true" android:theme="@style/Theme.Mediora" />
         <activity android:name=".ResetPasswordActivity" android:exported="true" android:theme="@style/Theme.Mediora" />

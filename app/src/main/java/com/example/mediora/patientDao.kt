@@ -9,8 +9,12 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PatientDao {
 
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPatient(patient: Patient)
+
+    @Query("SELECT * FROM patients WHERE patientName = :name LIMIT 1")
+    suspend fun getPatientByName(name: String): Patient?
 
     @Query("SELECT * FROM patients ORDER BY id DESC")
     fun getAllPatients(): Flow<List<Patient>>

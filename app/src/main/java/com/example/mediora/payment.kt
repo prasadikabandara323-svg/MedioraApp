@@ -2,7 +2,7 @@ package com.example.mediora
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class PaymentActivity : AppCompatActivity() {
@@ -11,15 +11,36 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        // 1. Credit Card බොත්තම හඳුනා ගැනීම
+        val btnBack = findViewById<ImageView>(R.id.btnBack) // XML එකේ ID එකට ගැලපෙන පරිදි
+        val btnMail = findViewById<ImageView>(R.id.btnMail)
+        val btnSaveDetails = findViewById<Button>(R.id.btnSaveDetails)
+        val spinnerCountry = findViewById<Spinner>(R.id.countrySpinner) // Drop-down එක
         val llCreditCard = findViewById<LinearLayout>(R.id.llCreditCard)
 
-        // 2. බොත්තම ක්‍රියාත්මක කිරීම (Click Listener)
-        // '?' භාවිතා කරන්නේ බොත්තම නොමැති නම් ඇප් එක Crash වීම වළක්වා ගැනීමටයි
-        llCreditCard?.setOnClickListener {
-            val intent = Intent(this, CardDetailsActivity::class.java)
-            startActivity(intent)
-            // ඔබ දෙවරක් startActivity(intent) ලියා තිබුණා, එය එකක් ලෙස ඉවත් කළා
+        btnBack?.setOnClickListener { finish() }
+
+        btnMail?.setOnClickListener {
+            startActivity(Intent(this, Notification::class.java))
         }
+
+        val countries = arrayOf("Sri Lanka", "India", "USA", "UK")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, countries)
+        spinnerCountry?.adapter = adapter
+
+        btnSaveDetails.setOnClickListener {
+            Toast.makeText(this, "Details Saved!", Toast.LENGTH_SHORT).show()
+        }
+
+        // 6. Card Payment Navigation
+        llCreditCard?.setOnClickListener {
+            startActivity(Intent(this, CardDetailsActivity::class.java))
+        }
+
+        // 7. Bottom Navigation Bar Links
+        findViewById<LinearLayout>(R.id.navHome)?.setOnClickListener { startActivity(Intent(this, home::class.java)) }
+        findViewById<LinearLayout>(R.id.navPharmacy)?.setOnClickListener { startActivity(Intent(this, PharmacyActivity::class.java)) }
+        findViewById<LinearLayout>(R.id.navEChanneling)?.setOnClickListener { startActivity(Intent(this,
+            EBookingActivity::class.java)) }
+        findViewById<LinearLayout>(R.id.navAccount)?.setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
     }
 }

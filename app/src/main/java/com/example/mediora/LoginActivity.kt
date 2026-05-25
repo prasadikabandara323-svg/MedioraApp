@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         val tvSignUpLink = findViewById<TextView>(R.id.tvSignUp)
         val tvForgotPassword = findViewById<TextView>(R.id.tvForgetPassword)
 
-        // 1. Login බොත්තම
         btnLogIn.setOnClickListener {
             val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString()
@@ -44,11 +43,10 @@ class LoginActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     if (user != null && user.password == password) {
-                        // පියවර 1: SharedPreferences වල email එක save කිරීම
+
                         val sharedPreferences = getSharedPreferences("MedioraPrefs", Context.MODE_PRIVATE)
                         sharedPreferences.edit().putString("LOGGED_USER", email).apply()
 
-                        // පියවර 2: Home එකට යැවීම
                         val intent = Intent(this@LoginActivity, home::class.java)
                         intent.putExtra("USER_EMAIL", email)
                         startActivity(intent)
@@ -61,13 +59,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // 2. "Sign up" ලින්ක් එක
         tvSignUpLink.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 
-        // 3. "Forget password" ලින්ක් එක
         tvForgotPassword.setOnClickListener {
             val intent = Intent(this, ResetPasswordActivity::class.java)
             startActivity(intent)

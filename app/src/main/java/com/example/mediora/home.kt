@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import java.util.Timer
 import java.util.TimerTask
+import android.widget.Toast
 
 class home : AppCompatActivity() {
 
@@ -44,11 +45,10 @@ class home : AppCompatActivity() {
         // 2. Scan Icon
         ivScan = findViewById(R.id.btnScan)
         ivScan.setOnClickListener {
-            val intent = Intent(this, ScannerActivity::class.java)
+            val intent = Intent(this, ScancodeActivity::class.java)
             startActivity(intent)
         }
 
-        // 3. Mail Icon (Notification Page එකට)
         ivMail = findViewById(R.id.btnMail)
         ivMail.setOnClickListener {
             val intent = Intent(this, Notification::class.java)
@@ -62,7 +62,6 @@ class home : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // About Us button එක සම්බන්ධ කිරීම
         val btnAboutUs = findViewById<LinearLayout>(R.id.btnAboutUs)
         btnAboutUs.setOnClickListener {
             val intent = Intent(this, AboutUsActivity::class.java)
@@ -70,24 +69,61 @@ class home : AppCompatActivity() {
         }
 
 
-        // Profile button එකේ ආරක්ෂිත බව තහවුරු කිරීම
-        // ඔබේ code එක මෙහෙම වෙනස් කරන්න
+
+
+
+        val btnBookAppointment = findViewById<ImageView>(R.id.btnBookAppointment)
+
+        btnBookAppointment.setOnClickListener {
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Medication Reminder බොත්තම
+        val btnMedicationReminder = findViewById<ImageView>(R.id.imgMedicationReminder)
+        btnMedicationReminder.setOnClickListener {
+            val intent = Intent(this, PharmacyActivity::class.java)
+            startActivity(intent)
+        }
+
+
         val imgHealthProfile = findViewById<ImageView>(R.id.imgHealthProfile)
-
         imgHealthProfile?.setOnClickListener {
-            // 1. මුලින්ම email එක තියෙන variable එකක් හදාගන්න (මේකේ තියෙන්න ඕනේ login වුණු කෙනාගේ email එක)
-            val userEmail = "login_වුණු_කෙනාගේ_email_එක"
+            val userEmail = "User's Email"
 
-            // 2. Intent එක හදන්න
             val intent = Intent(this, ProfileActivity::class.java)
 
-            // 3. Email එක අනිවාර්යයෙන්ම දාන්න
             intent.putExtra("USER_EMAIL", userEmail)
 
-            // 4. Activity එක පටන් ගන්න
             startActivity(intent)
 
         }
+
+        val navPharmacy = findViewById<LinearLayout>(R.id.navPharmacy)
+        navPharmacy.setOnClickListener {
+            val intent = Intent(this, PharmacyActivity::class.java)
+            startActivity(intent)
+        }
+
+        val navEChanneling = findViewById<LinearLayout>(R.id.navEChanneling)
+        navEChanneling.setOnClickListener {
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
+        }
+
+        val navAccount = findViewById<LinearLayout>(R.id.navAccount)
+        navAccount.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java) // හෝ ඔබේ AccountActivity එක
+            startActivity(intent)
+        }
+
+        val navHome = findViewById<LinearLayout>(R.id.navHome)
+        navHome.setOnClickListener {
+            // දැනටමත් Home පිටුවේ සිටින නිසා පණිවිඩයක් පෙන්වයි
+            Toast.makeText(this, "You are already on the home page", Toast.LENGTH_SHORT).show()
+        }
+
+
 
         // 5. Emergency Icon
         btnEmergency = findViewById(R.id.btnEmergency)

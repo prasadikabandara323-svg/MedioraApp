@@ -10,9 +10,22 @@
         android:layout_height="65dp"
         android:background="#FFD0E8F2"
         android:paddingHorizontal="15dp">
-        <ImageView android:id="@+id/btnBack" android:layout_width="38dp" android:layout_height="38dp" android:layout_centerVertical="true" android:src="@drawable/arrow2" android:contentDescription="Back" />
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow2"
+            android:contentDescription="Back" />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:text="Payment" android:textColor="#0E3982" android:textSize="30sp" android:textStyle="bold" />
-        <ImageView android:id="@+id/btnMail" android:layout_width="38dp" android:layout_height="38dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:src="@drawable/mail2" android:contentDescription="Mail" />
+        <ImageView
+            android:id="@+id/btnMail"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/mail2"
+            android:contentDescription="Mail" />
     </RelativeLayout>
 
     <LinearLayout
@@ -23,8 +36,44 @@
         android:background="#FFD0E9F3"
         android:orientation="horizontal"
         android:weightSum="4">
-        <LinearLayout android:id="@+id/navHome" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/home2" android:contentDescription="Home" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
-        <LinearLayout android:id="@+id/navPharmacy" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/plus" android:contentDescription="Pharmacy" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pharmacy" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/home2"
+                android:contentDescription="Home" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#0E3982"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/navPharmacy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/plus"
+                android:contentDescription="Pharmacy" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pharmacy"
+                android:textColor="#0E3982"
+                android:textSize="12sp" />
+        </LinearLayout>
         <LinearLayout android:id="@+id/navEChanneling" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/chanel" android:contentDescription="E-Channeling" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#0E3982" android:textSize="10sp" /></LinearLayout>
         <LinearLayout android:id="@+id/navAccount" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/account1" android:contentDescription="Account" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
     </LinearLayout>
@@ -45,7 +94,12 @@
             <EditText android:layout_width="match_parent" android:layout_height="45dp" android:hint="Name :" android:background="@android:drawable/edit_text" android:padding="10dp" android:layout_marginTop="5dp"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="contact info:" android:textSize="16sp" android:layout_marginTop="10dp"/>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                <Spinner android:id="@+id/countrySpinner" android:layout_width="100dp" android:layout_height="45dp" android:background="@android:drawable/btn_dropdown" />
+                <Spinner
+                    android:id="@+id/countrySpinner"
+                    android:layout_width="100dp"
+                    android:layout_height="45dp"
+                    android:background="@android:drawable/btn_dropdown" />
+
                 <EditText android:layout_width="match_parent" android:layout_height="45dp" android:layout_marginLeft="10dp" android:background="@android:drawable/edit_text" android:hint="Phone" android:padding="10dp"/>
             </LinearLayout>
             <EditText android:layout_width="match_parent" android:layout_height="45dp" android:hint="appointment ID:" android:layout_marginTop="10dp" android:background="@android:drawable/edit_text" android:padding="10dp"/>
@@ -54,6 +108,18 @@
             <EditText android:layout_width="match_parent" android:layout_height="45dp" android:hint="Service details:" android:layout_marginTop="5dp" android:background="@android:drawable/edit_text" android:padding="10dp"/>
             <EditText android:layout_width="match_parent" android:layout_height="45dp" android:hint="Charges" android:layout_marginTop="5dp" android:background="@android:drawable/edit_text" android:padding="10dp"/>
             <EditText android:layout_width="match_parent" android:layout_height="45dp" android:hint="Total amount: RS:" android:layout_marginTop="5dp" android:background="@android:drawable/edit_text" android:padding="10dp"/>
+
+
+            <Button
+                android:id="@+id/btnSaveDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Details"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="1dp"
+                android:backgroundTint="@color/purple_500"
+                android:textColor="@android:color/white" />
+
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pay With" android:textSize="18sp" android:textStyle="bold" android:textColor="#0E3982" android:layout_marginTop="30dp"/>
 
@@ -65,13 +131,24 @@
                 android:weightSum="4">
 
                 <LinearLayout android:id="@+id/llCreditCard" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <ImageView android:id="@+id/btnCreditCard" android:layout_width="50dp" android:layout_height="50dp" android:src="@drawable/card" android:contentDescription="Card" />
+                    <ImageView
+                        android:id="@+id/btnCreditCard"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/card"
+                        android:contentDescription="Card" />
+
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Credit/Debit card" android:textColor="#0E3982" android:textSize="10sp" android:layout_marginTop="5dp" android:textAlignment="center"/>
                 </LinearLayout>
 
 
                 <LinearLayout android:id="@+id/llPaypal" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <ImageView android:id="@+id/btnPaypal" android:layout_width="50dp" android:layout_height="50dp" android:src="@drawable/paypal" android:contentDescription="PayPal" />
+                    <ImageView
+                        android:id="@+id/btnPaypal"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/paypal"
+                        android:contentDescription="PayPal" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mobile wallets" android:textColor="#0E3982" android:textSize="10sp" android:layout_marginTop="5dp" android:textAlignment="center"/>
                 </LinearLayout>
 

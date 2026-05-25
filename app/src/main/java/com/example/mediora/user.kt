@@ -16,5 +16,6 @@ data class User(
     val weight: String,
     val bloodGroup: String,
 
-    val profilePhotoUri: String? = null
+    val profilePhotoUri: String? = null,
+
 )
