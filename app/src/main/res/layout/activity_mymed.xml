@@ -16,7 +16,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_height="38dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/mail" />
+            android:src="@drawable/mail2" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -67,7 +67,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/search" />
+                android:src="@drawable/search2" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -159,7 +159,7 @@
             android:id="@+id/btnAddMed"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/pharmacy"
+            android:src="@drawable/plus"
             android:layout_marginBottom="15dp"
             android:clickable="true"
             android:focusable="true"/>
@@ -204,22 +204,22 @@
         android:weightSum="4">
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/home" />
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/home2" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textColor="#0E3982" android:textSize="11sp"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-            <ImageView android:layout_width="21dp" android:layout_height="23dp" android:src="@drawable/pharmacy" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pharmacy" android:textColor="#0E3982" android:textSize="11sp"/>
+            <ImageView android:layout_width="21dp" android:layout_height="23dp" android:src="@drawable/plus" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:textColor="#0E3982" android:textSize="11sp"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/echaneling" />
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/chanel" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#0E3982" android:textSize="11sp"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/account" />
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/account1" />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="11sp"/>
         </LinearLayout>
     </LinearLayout>

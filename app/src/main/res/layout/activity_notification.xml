@@ -17,7 +17,7 @@
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:src="@drawable/mail" />
+            android:src="@drawable/mail2" />
     </RelativeLayout>
 
     <ScrollView
@@ -262,7 +262,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/home" />
+                android:src="@drawable/home2" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -282,7 +282,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/pharmacy" />
+                android:src="@drawable/plus" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -302,7 +302,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/echaneling" />
+                android:src="@drawable/chanel" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -321,7 +321,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/account" />
+                android:src="@drawable/account1" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
