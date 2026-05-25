@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.Mediora" parent="Theme.MaterialComponents.Light.NoActionBar">
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Mediora" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">#000080</item>
         <item name="colorPrimaryDark">#000080</item>
-        <item name="colorAccent">#5C5CE0</item>
+        <item name="colorSecondary">#03DAC6</item>
+        <item name="colorAccent" tools:ignore="NewApi">#5C5CE0</item>
 
         <item name="android:windowBackground">#F4FAFF</item>
+
     </style>
 
     <style name="LoginInputStyle" parent="Widget.AppCompat.EditText">
@@ -16,4 +19,5 @@
         <item name="android:background">@drawable/rounded_input_bg</item>
         <item name="android:textColorHint">#888</item>
     </style>
+
 </resources>

@@ -35,9 +35,10 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun MedioraTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    // 💡 හැම ෆෝන් එකකම Dark Mode තිබුණත් Light Mode එකේ පාටම (සුදු පසුබිම) පෙන්නන්න මෙතන false කළා
+    darkTheme: Boolean = false,
+    // 💡 Wallpaper එකෙන් ඇප් එකේ පාට වෙනස් වෙන එක නවත්වන්න මේකත් false කළා
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

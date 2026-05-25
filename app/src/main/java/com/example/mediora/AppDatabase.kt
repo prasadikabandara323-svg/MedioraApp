@@ -5,13 +5,27 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-// මෙතන entities ලැයිස්තුවට User එකත් එකතු කරන්න
-@Database(entities = [User::class ,Patient::class], version = 4, exportSchema = false)
+@Database(
+    entities = [
+        User::class,
+        Patient::class,
+        CartItem::class,
+        PharmacyOrder::class,
+        DeliveryDetails::class,
+        PrescriptionDetails::class
+    ],
+    version = 4,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun patientDao(): PatientDao
-    // අලුතින් හදපු UserDao එක මෙතනට එකතු කරන්න
+    // සියලුම DAOs මෙතන අර්ථ දක්වන්න
     abstract fun userDao(): UserDao
+    abstract fun patientDao(): PatientDao
+    abstract fun cartDao(): CartDao
+    abstract fun pharmacyDao(): PharmacyDao
+    abstract fun deliveryDao(): DeliveryDao
+    abstract fun prescriptionDao(): PrescriptionDao
 
     companion object {
         @Volatile
@@ -24,7 +38,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "mediora_database"
                 )
-                    .fallbackToDestructiveMigration() // මෙය එකතු කරන්න (Schema වෙනස් වන නිසා)
+                    .fallbackToDestructiveMigration() // Schema වෙනස්කම් සඳහා
                     .build()
                 INSTANCE = instance
                 instance
