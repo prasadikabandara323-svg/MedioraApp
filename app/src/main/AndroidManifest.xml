@@ -64,5 +64,6 @@
         <activity android:name=".enterdelivery_details" android:exported="false" android:theme="@style/Theme.Mediora" />
         <activity android:name=".order_details" android:exported="false" android:theme="@style/Theme.Mediora" />
 
+
     </application>
 </manifest>

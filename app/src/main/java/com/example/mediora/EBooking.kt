@@ -48,6 +48,7 @@ class EBookingActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
 
+
             NavHost(navController = navController, startDestination = "ebooking_home") {
 
                 composable("ebooking_home") {
@@ -62,9 +63,33 @@ class EBookingActivity : ComponentActivity() {
                     YourDoctorScreen(doctorId = doctorId, navController = navController)
                 }
 
-                composable("add_patient_screen") {
-                    AddNewPatientScreen(navController = navController)
+                composable(
+                    route = "add_new_patient_screen/{doctorFee}/{doctorName}/{patientName}",
+                    arguments = listOf(
+                        navArgument("doctorFee") { type = NavType.StringType },
+                        navArgument("doctorName") { type = NavType.StringType },
+                        navArgument("patientName") { type = NavType.StringType }
+                    )
+                ) { backStackEntry ->
+                    val doctorFee = backStackEntry.arguments?.getString("doctorFee") ?: "Rs. 0/="
+                    val doctorName = backStackEntry.arguments?.getString("doctorName") ?: "Unknown Doctor"
+                    val patName = java.net.URLDecoder.decode(backStackEntry.arguments?.getString("patientName") ?: "", "UTF-8")
+
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = androidx.compose.ui.Alignment.Center
+                    ) {
+                        Text(
+                            text = "Payment Page\nFee: ${doctorFee}fee\nDoctor: ${doctorName}Name\nPatient: $patName", fontSize = 20.sp)
+                    }
+
+                    AddNewPatientScreen(
+                        navController = navController,
+                        doctorFee = doctorFee,
+                        doctorName = doctorName
+                    )
                 }
+
             }
         }
     }
@@ -537,6 +562,7 @@ fun TopDoctorCardItem(id: String, name: String, specialty: String, imageRes: Int
                     painter = painterResource(id = imageRes),
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
+
                     contentScale = ContentScale.Crop
                 )
             }
@@ -705,7 +731,7 @@ fun BookingItem(booking: BookingItemData, onDelete: () -> Unit, onEditSelect: ()
 
 @Composable
 fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
-    // 👈 සාමාන්‍ය Activity එකකට මාරු වෙන්න Context එක ලබා ගැනීම
+
     val context = LocalContext.current
 
     Card(
@@ -723,7 +749,7 @@ fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
         ) {
             BottomNavItem(R.drawable.home, "Home", selectedTab == "Home") { onTabSelected("Home") }
 
-            // 🔄 මෙන්න මෙතන මම Intent එකක් දාලා කෙලින්ම PharmacyActivity එකට යන විදිහට හැදුවා:
+
             BottomNavItem(R.drawable.pharmacy, "Pharmacy", selectedTab == "Pharmacy") {
                 onTabSelected("Pharmacy")
                 context.startActivity(Intent(context, PharmacyActivity::class.java))

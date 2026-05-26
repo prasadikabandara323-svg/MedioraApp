@@ -27,16 +27,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddNewPatientScreen(navController: NavController) {
+fun AddNewPatientScreen(
+    navController: NavController,
+    doctorFee: String,
+    doctorName: String
+) {
     var patientName by remember { mutableStateOf("") }
     var age by remember { mutableStateOf("") }
     var contactNumber by remember { mutableStateOf("") }
@@ -49,7 +51,6 @@ fun AddNewPatientScreen(navController: NavController) {
     var expandedGender by remember { mutableStateOf(false) }
 
     var selectedTab by remember { mutableStateOf("E-Channeling") }
-
     var searchQuery by remember { mutableStateOf("") }
 
     val context = LocalContext.current
@@ -170,6 +171,7 @@ fun AddNewPatientScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
 
             // --- 3. PATIENT DETAILS TABLE ---
+            // --- 3. PATIENT DETAILS TABLE (Validation එකතු කළ කොටස) ---
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -204,8 +206,19 @@ fun AddNewPatientScreen(navController: NavController) {
                         )
                     }
 
-                    EditableFormRow("Patient Name", patientName, tableRowColor) { patientName = it }
-                    EditableFormRow("Age (Yrs)", age, tableRowColor) { age = it }
+
+                    EditableFormRow("Patient Name", patientName, tableRowColor) { input ->
+                        if (input.all { it.isLetter() || it.isWhitespace() }) {
+                            patientName = input
+                        }
+                    }
+
+
+                    EditableFormRow("Age (Yrs)", age, tableRowColor) { input ->
+                        if (input.all { it.isDigit() } && input.length <= 2) {
+                            age = input
+                        }
+                    }
 
                     // Gender Dropdown Row
                     Row(
@@ -234,16 +247,31 @@ fun AddNewPatientScreen(navController: NavController) {
                     }
                     HorizontalDivider(color = Color.White, thickness = 1.dp)
 
-                    EditableFormRow("NIC / Passport", nicNumber, tableRowColor) { nicNumber = it }
-                    EditableFormRow("Contact Number", contactNumber, tableRowColor) { contactNumber = it }
-                    EditableFormRow("Emergency Contact", emergencyContact, tableRowColor) { emergencyContact = it }
+
+                    EditableFormRow("NIC / Passport", nicNumber, tableRowColor) { input ->
+                        if (input.all { it.isDigit() } && input.length <= 12) {
+                            nicNumber = input
+                        }
+                    }
+
+
+                    EditableFormRow("Contact Number", contactNumber, tableRowColor) { input ->
+                        if (input.all { it.isDigit() } && input.length <= 10) {
+                            contactNumber = input
+                        }
+                    }
+
+
+                    EditableFormRow("Emergency Contact", emergencyContact, tableRowColor) { input ->
+                        if (input.all { it.isDigit() } && input.length <= 10) {
+                            emergencyContact = input
+                        }
+                    }
+
                     EditableFormRow("Reason for Visit", reasonForVisit, tableRowColor) { reasonForVisit = it }
                     EditableFormRow("Previous Records(Optional)", previousRecords, tableRowColor) { previousRecords = it }
                 }
             }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
             // --- 4. ACTION BUTTONS ---
             Row(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
@@ -253,20 +281,23 @@ fun AddNewPatientScreen(navController: NavController) {
                 Button(
                     onClick = {
                         if (patientName.isNotBlank() && contactNumber.isNotBlank()) {
+                            val currentPatientName = patientName
+                            val currentDocName = doctorName
+                            val currentDocFee = doctorFee
+
                             coroutineScope.launch {
-                                // 🚀 මෙන්න මෙතන යාළුවා ලියපු වැරැද්ද හැදුවා!
-                                // (අලුත් variables ටිකත් ඩේටාබේස් එකට යන විදිහට කෝඩ් එක අප්ඩේට් කළා)
                                 val newPatient = Patient(
-                                    patientName = patientName,
+                                    patientName = currentPatientName,
                                     ageGender = "$age $selectedGender",
                                     contactNumber = contactNumber,
                                     reasonForVisit = reasonForVisit,
                                     previousRecords = previousRecords,
-                                    emergencyContact = emergencyContact, // 👈 එකතු කළා
-                                    nicNumber = nicNumber // 👈 එකතු කළා
+                                    emergencyContact = emergencyContact,
+                                    nicNumber = nicNumber
                                 )
                                 database.patientDao().insertPatient(newPatient)
                                 Toast.makeText(context, "Patient Saved Successfully!", Toast.LENGTH_SHORT).show()
+
                                 patientName = ""
                                 age = ""
                                 contactNumber = ""
@@ -274,6 +305,10 @@ fun AddNewPatientScreen(navController: NavController) {
                                 previousRecords = ""
                                 emergencyContact = ""
                                 nicNumber = ""
+
+                                val encodedPatient = java.net.URLEncoder.encode(currentPatientName, "UTF-8")
+                                val encodedDoc = java.net.URLEncoder.encode(currentDocName, "UTF-8")
+                                navController.navigate("payment_screen/$currentDocFee/$encodedDoc/$encodedPatient")
                             }
                         } else {
                             Toast.makeText(context, "Please fill Name and Contact Number", Toast.LENGTH_SHORT).show()
@@ -306,13 +341,10 @@ fun AddNewPatientScreen(navController: NavController) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = "Clear", tint = Color.White, modifier = Modifier.size(24.dp))
                 }
 
-
                 Button(
                     onClick = {
-                        navController.navigate("ebooking_home") {
-                            
-                            popUpTo("ebooking_home") { inclusive = true }
-                        }
+
+                        navController.popBackStack()
                     },
                     modifier = Modifier.weight(1f).height(48.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
@@ -404,6 +436,7 @@ fun AddNewPatientScreen(navController: NavController) {
     }
 }
 
+
 @Composable
 fun PatientBottomNavItem(imageResId: Int, label: String, isSelected: Boolean, primaryBlue: Color, onClick: () -> Unit) {
     Column(
@@ -441,9 +474,7 @@ fun EditableFormRow(label: String, value: String, bgColor: Color, onValueChange:
             fontWeight = FontWeight.Medium,
             color = Color.Black
         )
-
         Box(modifier = Modifier.width(1.dp).fillMaxHeight().background(Color.White))
-
         TextField(
             value = value,
             onValueChange = onValueChange,

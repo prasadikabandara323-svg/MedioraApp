@@ -449,9 +449,12 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Button(
-                            // 🚀 සිරාවටම වැඩ කරන කෑල්ල!
-                            onClick = { navController.navigate(route = "add_new_patient_screen") },
-                            modifier = Modifier
+                            onClick = {
+
+                                val safeFee = doctor.totalFee.replace("/", "")
+                                navController.navigate(route = "add_new_patient_screen/$safeFee/${doctor.name}")
+                            },
+                            modifier = Modifier //
                                 .weight(1.5f)
                                 .height(54.dp)
                                 .shadow(4.dp, shape = RoundedCornerShape(18.dp)),
