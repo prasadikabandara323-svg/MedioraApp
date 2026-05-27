@@ -48,25 +48,31 @@ class enterdelivery_details : AppCompatActivity() {
         val navEChanneling = bottomNav.getChildAt(2) as LinearLayout
         val navAccount = bottomNav.getChildAt(3) as LinearLayout
 
+
         navHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            val intent = Intent(this, home::class.java)
             startActivity(intent)
             finish()
         }
 
         navPharmacy.setOnClickListener {
-            val intent = Intent(this, PharmacyActivity::class.java)
+
+            Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
+        }
+
+        navEChanneling.setOnClickListener {
+
+            val intent = Intent(this, EBookingActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        navEChanneling.setOnClickListener {
-            Toast.makeText(this, "E-Channeling page is not connected yet", Toast.LENGTH_SHORT).show()
-        }
-
         navAccount.setOnClickListener {
-            Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
 
@@ -120,7 +126,7 @@ class enterdelivery_details : AppCompatActivity() {
                     Toast.makeText(this@enterdelivery_details, "Order Confirmed Successfully!", Toast.LENGTH_LONG).show()
 
 
-                    val intent = Intent(this@enterdelivery_details, PharmacyActivity::class.java)
+                    val intent = Intent(this@enterdelivery_details, CardDetailsActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

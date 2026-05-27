@@ -55,6 +55,13 @@ class upload_prescriptions : AppCompatActivity() {
         val backArrow = findViewById<ImageView>(R.id.back_arrow)
         backArrow.setOnClickListener { finish() }
 
+
+        val btnNotification = findViewById<ImageView>(R.id.mail_box)
+        btnNotification.setOnClickListener {
+            val intent = Intent(this, Notification::class.java)
+            startActivity(intent)
+        }
+
         val etPatientName = findViewById<EditText>(R.id.et_patient_name)
         val etAge = findViewById<EditText>(R.id.et_age)
         val etDays = findViewById<EditText>(R.id.et_days)
@@ -73,25 +80,31 @@ class upload_prescriptions : AppCompatActivity() {
         val navEChanneling = bottomNav.getChildAt(2) as LinearLayout
         val navAccount = bottomNav.getChildAt(3) as LinearLayout
 
+
         navHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            val intent = Intent(this, home::class.java)
             startActivity(intent)
             finish()
         }
 
         navPharmacy.setOnClickListener {
-            val intent = Intent(this, PharmacyActivity::class.java)
+
+            Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
+        }
+
+        navEChanneling.setOnClickListener {
+
+            val intent = Intent(this, EBookingActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        navEChanneling.setOnClickListener {
-            Toast.makeText(this, "E-Channeling page is not connected yet", Toast.LENGTH_SHORT).show()
-        }
-
         navAccount.setOnClickListener {
-            Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         btnGallery.setOnClickListener {

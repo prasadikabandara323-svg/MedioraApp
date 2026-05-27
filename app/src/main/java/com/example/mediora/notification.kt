@@ -28,19 +28,29 @@ class Notification : ComponentActivity() {
 
         // 3. Navigation Click Listeners
         navHome.setOnClickListener {
-            Toast.makeText(this, "Navigating to Home", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, home::class.java)
+            startActivity(intent)
+            finish()
         }
 
         navPharmacy.setOnClickListener {
-            Toast.makeText(this, "Navigating to Pharmacy", Toast.LENGTH_SHORT).show()
+
+            Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
         }
 
         navChanneling.setOnClickListener {
-            Toast.makeText(this, "Navigating to E-Channeling", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         navAccount.setOnClickListener {
-            Toast.makeText(this, "Navigating to Account", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // 4. Switch Logic

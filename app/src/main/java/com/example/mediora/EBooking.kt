@@ -156,20 +156,10 @@ fun EBookingScreen(navController: NavController) {
 
     Scaffold(
         bottomBar = {
-            val context = LocalContext.current
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 40.dp)
-            ) {
-                BookingBottomBar(
-                    selectedTab = selectedTab,
-                    onTabSelected = { newTab ->
-                        selectedTab = newTab
-
-                    }
-                )
-            }
+            BookingBottomBar(
+                selectedTab = selectedTab,
+                onTabSelected = { newTab -> selectedTab = newTab }
+            )
         }
     ) { innerPadding ->
         Column(
@@ -305,15 +295,16 @@ fun EBookingScreen(navController: NavController) {
                 }
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+
+            Spacer(modifier = Modifier.height(80.dp))
         }
     }
 }
 
+// ඉතිරි සියලුම Functions (HeaderSection, FeaturedDoctorCards, ආදිය) කිසිදු වෙනසක් නොමැතිව පහතින් එකතු කරන්න...
 @Composable
 fun HeaderSection(navController: NavController) {
     val context = LocalContext.current
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -325,28 +316,17 @@ fun HeaderSection(navController: NavController) {
         Icon(
             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
             contentDescription = "Back",
-            modifier = Modifier
-                .size(26.dp)
-                .clickable { navController.popBackStack() },
+            modifier = Modifier.size(26.dp).clickable { navController.popBackStack() },
             tint = DarkBlue
         )
-        Text(
-            text = "E-Booking",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            color = DarkBlue
-        )
+        Text(text = "E-Booking", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = DarkBlue)
         Image(
             painter = painterResource(id = R.drawable.notifi),
             contentDescription = "Notification",
-            modifier = Modifier
-                .size(32.dp)
-                .clip(CircleShape)
-                .clickable {
-                    // 🔔 Notification Icon එක ක්ලික් කරපු ගමන් ඔයාගේ Notification Activity එකට යනවා:
-                    val intent = Intent(context, Notification::class.java)
-                    context.startActivity(intent)
-                },
+            modifier = Modifier.size(32.dp).clip(CircleShape).clickable {
+                val intent = Intent(context, Notification::class.java)
+                context.startActivity(intent)
+            },
             contentScale = ContentScale.Crop
         )
     }
@@ -355,19 +335,11 @@ fun HeaderSection(navController: NavController) {
 @Composable
 fun FeaturedDoctorCards(doctors: List<DoctorItem>, navController: NavController) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 4.dp)
-            .horizontalScroll(rememberScrollState()),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp).horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         if (doctors.isEmpty()) {
-            Text(
-                text = "No doctors available",
-                color = Color.Gray,
-                fontSize = 13.sp,
-                modifier = Modifier.padding(vertical = 20.dp)
-            )
+            Text("No doctors available", color = Color.Gray, fontSize = 13.sp, modifier = Modifier.padding(vertical = 20.dp))
         } else {
             doctors.forEach { doc ->
                 FeaturedDoctorCardItem(doc.id, doc.name, doc.specialty, doc.imageRes, navController, Modifier.width(160.dp))
@@ -379,22 +351,12 @@ fun FeaturedDoctorCards(doctors: List<DoctorItem>, navController: NavController)
 @Composable
 fun FeaturedDoctorCardItem(id: String, name: String, specialty: String, imageRes: Int, navController: NavController, modifier: Modifier) {
     Card(
-        modifier = modifier
-            .height(120.dp)
-            .shadow(3.dp, shape = RoundedCornerShape(24.dp))
-            .clickable { navController.navigate("your_doctor_screen/$id") },
+        modifier = modifier.height(120.dp).shadow(3.dp, shape = RoundedCornerShape(24.dp)).clickable { navController.navigate("your_doctor_screen/$id") },
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = IconBackgroundBlue)
     ) {
-        Row(
-            modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(
-                modifier = Modifier
-                    .padding(start = 12.dp, top = 8.dp, bottom = 8.dp)
-                    .weight(1.1f)
-            ) {
+        Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
+            Column(modifier = Modifier.padding(start = 12.dp, top = 8.dp, bottom = 8.dp).weight(1.1f)) {
                 Text(text = name, color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.Bold, maxLines = 2)
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(text = specialty, color = Color.White.copy(alpha = 0.85f), fontSize = 10.sp)
@@ -402,10 +364,7 @@ fun FeaturedDoctorCardItem(id: String, name: String, specialty: String, imageRes
             Image(
                 painter = painterResource(id = imageRes),
                 contentDescription = null,
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(0.9f)
-                    .clip(RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp)),
+                modifier = Modifier.fillMaxHeight().weight(0.9f).clip(RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp)),
                 contentScale = ContentScale.Crop
             )
         }
@@ -414,22 +373,13 @@ fun FeaturedDoctorCardItem(id: String, name: String, specialty: String, imageRes
 
 @Composable
 fun SectionTitle(title: String) {
-    Text(
-        text = title,
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
-        color = PrimaryBlue,
-        modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 8.dp)
-    )
+    Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Bold, color = PrimaryBlue, modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 8.dp))
 }
 
 @Composable
 fun CategoryRow(selectedCategory: String, onCategorySelect: (String) -> Unit) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 2.dp)
-            .horizontalScroll(rememberScrollState()),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 2.dp).horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         CategoryTag("General practitioner", Icons.Default.Add, Color(0xFF00C853), selectedCategory == "General practitioner") { onCategorySelect("General practitioner") }
@@ -444,54 +394,23 @@ fun CategoryTag(label: String, icon: ImageVector, iconColor: Color, isSelected: 
     Card(
         shape = RoundedCornerShape(18.dp),
         colors = CardDefaults.cardColors(containerColor = if (isSelected) DarkBlue else PrimaryBlue),
-        modifier = Modifier
-            .height(38.dp)
-            .clickable { onClick() }
-            .shadow(if (isSelected) 4.dp else 0.dp, shape = RoundedCornerShape(18.dp))
+        modifier = Modifier.height(38.dp).clickable { onClick() }.shadow(if (isSelected) 4.dp else 0.dp, shape = RoundedCornerShape(18.dp))
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 10.dp)
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(24.dp)
-                    .background(Color.White, CircleShape),
-                contentAlignment = Alignment.Center
-            ) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize().padding(horizontal = 10.dp)) {
+            Box(modifier = Modifier.size(24.dp).background(Color.White, CircleShape), contentAlignment = Alignment.Center) {
                 Icon(icon, contentDescription = null, tint = iconColor, modifier = Modifier.size(16.dp))
             }
             Spacer(modifier = Modifier.width(6.dp))
-            Text(
-                text = label,
-                color = Color.White,
-                fontSize = 11.sp,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1
-            )
+            Text(text = label, color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold, maxLines = 1)
         }
     }
 }
 
 @Composable
 fun TopDoctorsHeader() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
+    Row(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back",
-                tint = PrimaryBlue,
-                modifier = Modifier.size(16.dp)
-            )
+            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = PrimaryBlue, modifier = Modifier.size(16.dp))
             Spacer(modifier = Modifier.width(6.dp))
             Text("Top Doctors", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = PrimaryBlue)
         }
@@ -501,23 +420,14 @@ fun TopDoctorsHeader() {
 @Composable
 fun TopDoctorsList(doctors: List<DoctorItem>, navController: NavController) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-            .horizontalScroll(rememberScrollState()),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         if (doctors.isEmpty()) {
-            Text(text = "No top doctors in this category", color = Color.Gray, fontSize = 13.sp, modifier = Modifier.padding(vertical = 15.dp))
+            Text("No top doctors in this category", color = Color.Gray, fontSize = 13.sp, modifier = Modifier.padding(vertical = 15.dp))
         } else {
             doctors.forEach { doc ->
-                TopDoctorCardItem(
-                    id = doc.id,
-                    name = doc.name,
-                    specialty = doc.specialty,
-                    imageRes = doc.imageRes,
-                    navController = navController
-                )
+                TopDoctorCardItem(id = doc.id, name = doc.name, specialty = doc.specialty, imageRes = doc.imageRes, navController = navController)
             }
         }
     }
@@ -526,36 +436,15 @@ fun TopDoctorsList(doctors: List<DoctorItem>, navController: NavController) {
 @Composable
 fun TopDoctorCardItem(id: String, name: String, specialty: String, imageRes: Int, navController: NavController) {
     Card(
-        modifier = Modifier
-            .width(210.dp)
-            .height(100.dp)
-            .shadow(2.dp, shape = RoundedCornerShape(22.dp))
-            .clickable { navController.navigate("your_doctor_screen/$id") },
+        modifier = Modifier.width(210.dp).height(100.dp).shadow(2.dp, shape = RoundedCornerShape(22.dp)).clickable { navController.navigate("your_doctor_screen/$id") },
         shape = RoundedCornerShape(22.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
     ) {
-        Row(
-            modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(0.85f)
-                    .background(IconBackgroundBlue, shape = RoundedCornerShape(topStart = 22.dp, bottomStart = 22.dp))
-            ) {
-                Image(
-                    painter = painterResource(id = imageRes),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
+        Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
+            Box(modifier = Modifier.fillMaxHeight().weight(0.85f).background(IconBackgroundBlue, shape = RoundedCornerShape(topStart = 22.dp, bottomStart = 22.dp))) {
+                Image(painter = painterResource(id = imageRes), contentDescription = null, modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Crop)
             }
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 10.dp, vertical = 6.dp)
-                    .weight(1.15f)
-            ) {
+            Column(modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp).weight(1.15f)) {
                 Text(text = name, color = PrimaryBlue, fontSize = 13.sp, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(text = specialty, color = DarkBlue, fontSize = 11.sp, fontWeight = FontWeight.Medium)
@@ -567,49 +456,21 @@ fun TopDoctorCardItem(id: String, name: String, specialty: String, imageRes: Int
 @Composable
 fun PromoBannerSection(title: String, subTitle: String, onUpdateClick: () -> Unit) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 16.dp)
-            .shadow(2.dp, shape = RoundedCornerShape(16.dp))
-            .animateContentSize(),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 16.dp).shadow(2.dp, shape = RoundedCornerShape(16.dp)).animateContentSize(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFFFE0B2))
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(14.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+        Row(modifier = Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
             Column(modifier = Modifier.weight(1.2f)) {
                 Text(text = title, color = Color(0xFFE65100), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 Text(text = subTitle, color = Color.Black.copy(alpha = 0.7f), fontSize = 12.sp)
                 Spacer(modifier = Modifier.height(8.dp))
-                Button(
-                    onClick = onUpdateClick,
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE65100)),
-                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
-                    modifier = Modifier.height(28.dp),
-                    shape = RoundedCornerShape(8.dp)
-                ) {
+                Button(onClick = onUpdateClick, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE65100)), contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp), modifier = Modifier.height(28.dp), shape = RoundedCornerShape(8.dp)) {
                     Text("Update", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold)
                 }
             }
-
-            Box(
-                modifier = Modifier
-                    .weight(0.3f)
-                    .size(40.dp)
-                    .background(Color(0xFFFFF3E0), CircleShape),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Refresh,
-                    contentDescription = "Promo Update",
-                    tint = Color(0xFFE65100),
-                    modifier = Modifier.size(28.dp)
-                )
+            Box(modifier = Modifier.weight(0.3f).size(40.dp).background(Color(0xFFFFF3E0), CircleShape), contentAlignment = Alignment.Center) {
+                Icon(imageVector = Icons.Default.Refresh, contentDescription = "Promo Update", tint = Color(0xFFE65100), modifier = Modifier.size(28.dp))
             }
         }
     }
@@ -618,21 +479,12 @@ fun PromoBannerSection(title: String, subTitle: String, onUpdateClick: () -> Uni
 @Composable
 fun UpcomingAppointmentCard() {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-            .shadow(2.dp, shape = RoundedCornerShape(20.dp)),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).shadow(2.dp, shape = RoundedCornerShape(20.dp)),
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(14.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier.size(44.dp).background(Color(0xFFE8EAF6), CircleShape),
-                contentAlignment = Alignment.Center
-            ) {
+        Row(modifier = Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+            Box(modifier = Modifier.size(44.dp).background(Color(0xFFE8EAF6), CircleShape), contentAlignment = Alignment.Center) {
                 Icon(Icons.Default.Notifications, contentDescription = "Alert", tint = PrimaryBlue)
             }
             Spacer(modifier = Modifier.width(14.dp))
@@ -651,20 +503,14 @@ fun ChannelingBookingsSection(
     onBookingClick: (BookingItemData) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         if (bookings.isEmpty()) {
             Text("No bookings found.", color = Color.Gray, fontSize = 13.sp)
         } else {
             bookings.forEach { booking ->
-                BookingItem(
-                    booking = booking,
-                    onDelete = { onDeleteClick(booking) },
-                    onEditSelect = { onBookingClick(booking) }
-                )
+                BookingItem(booking = booking, onDelete = { onDeleteClick(booking) }, onEditSelect = { onBookingClick(booking) })
             }
         }
     }
@@ -673,42 +519,18 @@ fun ChannelingBookingsSection(
 @Composable
 fun BookingItem(booking: BookingItemData, onDelete: () -> Unit, onEditSelect: () -> Unit) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(55.dp)
-            .clickable { onEditSelect() },
+        modifier = Modifier.fillMaxWidth().height(55.dp).clickable { onEditSelect() },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFE1F5FE))
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.weight(1f)
-            ) {
+        Row(modifier = Modifier.fillMaxSize().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
                 Icon(booking.icon, contentDescription = null, tint = Color(0xFF0288D1), modifier = Modifier.size(20.dp))
                 Spacer(modifier = Modifier.width(12.dp))
-                Text(
-                    text = booking.title,
-                    fontSize = 12.sp,
-                    color = DarkBlue,
-                    fontWeight = FontWeight.Medium,
-                    maxLines = 1
-                )
+                Text(text = booking.title, fontSize = 12.sp, color = DarkBlue, fontWeight = FontWeight.Medium, maxLines = 1)
             }
-
             IconButton(onClick = onDelete) {
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete Booking",
-                    tint = Color(0xFFFF5252),
-                    modifier = Modifier.size(20.dp)
-                )
+                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Booking", tint = Color(0xFFFF5252), modifier = Modifier.size(20.dp))
             }
         }
     }
@@ -717,34 +539,24 @@ fun BookingItem(booking: BookingItemData, onDelete: () -> Unit, onEditSelect: ()
 @Composable
 fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
     val context = LocalContext.current
-
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(72.dp),
+        modifier = Modifier.fillMaxWidth().height(72.dp),
         shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFD0E8F2)),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxSize(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Row(modifier = Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
             BottomNavItem(R.drawable.home, "Home", selectedTab == "Home") {
                 onTabSelected("Home")
                 context.startActivity(Intent(context, home::class.java))
             }
-
             BottomNavItem(R.drawable.pharmacy, "Pharmacy", selectedTab == "Pharmacy") {
                 onTabSelected("Pharmacy")
                 context.startActivity(Intent(context, PharmacyActivity::class.java))
             }
-
             BottomNavItem(R.drawable.echannel, "E-Channeling", selectedTab == "E-Channeling") {
                 onTabSelected("E-Channeling")
             }
-
             BottomNavItem(R.drawable.account, "Account", selectedTab == "Account") {
                 onTabSelected("Account")
             }
@@ -756,18 +568,12 @@ fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
 fun BottomNavItem(imageResId: Int, label: String, isSelected: Boolean, onClick: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .clickable { onClick() }
-            .padding(4.dp)
+        modifier = Modifier.clickable { onClick() }.padding(4.dp)
     ) {
         Image(
             painter = painterResource(id = imageResId),
             contentDescription = label,
-            modifier = if (isSelected) Modifier
-                .size(36.dp)
-                .background(PrimaryBlue, CircleShape)
-                .padding(6.dp)
-            else Modifier.size(26.dp),
+            modifier = if (isSelected) Modifier.size(36.dp).background(PrimaryBlue, CircleShape).padding(6.dp) else Modifier.size(26.dp),
             contentScale = ContentScale.Fit
         )
         Spacer(modifier = Modifier.height(2.dp))

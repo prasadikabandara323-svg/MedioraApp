@@ -23,6 +23,13 @@ class PharmacyActivity : ComponentActivity() {
         val btnBack = findViewById<View>(R.id.btnBack)
         val etSearch = findViewById<EditText>(R.id.etSearch)
 
+
+        val btnNotification = findViewById<View>(R.id.btnMail)
+        btnNotification.setOnClickListener {
+            val intent = Intent(this, com.example.mediora.Notification::class.java)
+            startActivity(intent)
+        }
+
         val btnUploadPrescription = findViewById<CardView>(R.id.btnUploadPrescription)
         btnUploadPrescription.setOnClickListener {
             val intent = Intent(this, upload_prescriptions::class.java)
@@ -81,33 +88,41 @@ class PharmacyActivity : ComponentActivity() {
         btnMedicalDevices.setOnClickListener {
             startActivity(Intent(this, medicaldevice::class.java))
         }
-
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+
+            val intent = Intent(this, home::class.java)
             startActivity(intent)
             finish()
         }
 
+
         navHome.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+
+            val intent = Intent(this, home::class.java)
+            startActivity(intent)
             finish()
         }
 
         navPharmacy.setOnClickListener {
+
             Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
         }
 
-        // ➡️ මෙන්න මෙතන තිබ්බ වැරැද්ද හැදුවා මැනික! E-Channeling අයිකන් එක ක්ලික් කළාම MainActivity එක හරහා E-Booking එකට යන්න හැදුවා.
         navEChanneling.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("NAVIGATE_TO", "E_BOOKING")
+
+            val intent = Intent(this, EBookingActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         navAccount.setOnClickListener {
-            Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
         }
+
+
 
         categoryLayouts = listOf(
             btnPainRelief, btnAntibiotics, btnVitamins, btnColdFlu,

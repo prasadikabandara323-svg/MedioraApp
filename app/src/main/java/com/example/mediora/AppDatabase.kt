@@ -19,7 +19,7 @@ import androidx.room.RoomDatabase
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    // සියලුම DAOs මෙතන අර්ථ දක්වන්න
+
     abstract fun userDao(): UserDao
     abstract fun patientDao(): PatientDao
     abstract fun cartDao(): CartDao

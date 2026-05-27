@@ -51,21 +51,32 @@ class PainReliefActivity : AppCompatActivity() {
         val navAccount = findViewById<LinearLayout>(R.id.navSearch)
         val etSearchPainRelief = findViewById<EditText>(R.id.etSearchPainRelief)
 
+
         navHome.setOnClickListener {
-            startActivity(Intent(this, PharmacyActivity::class.java))
+
+            val intent = Intent(this, home::class.java)
+            startActivity(intent)
             finish()
-        }
-        navPharmacy.setOnClickListener {
-            startActivity(Intent(this, PharmacyActivity::class.java))
-            finish()
-        }
-        navEChanneling.setOnClickListener {
-            Toast.makeText(this, "E-Channeling page coming soon!", Toast.LENGTH_SHORT).show()
-        }
-        navAccount.setOnClickListener {
-            Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
         }
 
+        navPharmacy.setOnClickListener {
+
+            Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
+        }
+
+        navEChanneling.setOnClickListener {
+
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        navAccount.setOnClickListener {
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         findViewById<CardView>(R.id.btnAddParacetamol).setOnClickListener { saveToDatabase("Paracitamol", 4.50, "500mg") }
         findViewById<CardView>(R.id.btnAddIbuprofen).setOnClickListener { saveToDatabase("Ibuprofen", 8.50, "200mg") }

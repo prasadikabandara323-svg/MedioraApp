@@ -52,19 +52,31 @@ class SupplementsActivity : AppCompatActivity() {
         val navAccount = findViewById<LinearLayout>(R.id.navSearch)
         val etSearchSupplements = findViewById<EditText>(R.id.etSearchSupplements)
 
+
         navHome.setOnClickListener {
-            startActivity(Intent(this, PharmacyActivity::class.java))
+
+            val intent = Intent(this, home::class.java)
+            startActivity(intent)
             finish()
         }
+
         navPharmacy.setOnClickListener {
-            startActivity(Intent(this, PharmacyActivity::class.java))
+
+            Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
+        }
+
+        navEChanneling.setOnClickListener {
+
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
             finish()
         }
-        navEChanneling.setOnClickListener {
-            Toast.makeText(this, "E-Channeling page coming soon!", Toast.LENGTH_SHORT).show()
-        }
+
         navAccount.setOnClickListener {
-            Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
 

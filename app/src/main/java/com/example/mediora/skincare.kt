@@ -53,20 +53,30 @@ class skincare : AppCompatActivity() {
         val etSearchSkinCare = findViewById<EditText>(R.id.etSearchSkinCare)
 
         navHome.setOnClickListener {
-            startActivity(Intent(this, PharmacyActivity::class.java))
+
+            val intent = Intent(this, home::class.java)
+            startActivity(intent)
             finish()
-        }
-        navPharmacy.setOnClickListener {
-            startActivity(Intent(this, PharmacyActivity::class.java))
-            finish()
-        }
-        navEChanneling.setOnClickListener {
-            Toast.makeText(this, "E-Channeling page coming soon!", Toast.LENGTH_SHORT).show()
-        }
-        navAccount.setOnClickListener {
-            Toast.makeText(this, "Account profile coming soon!", Toast.LENGTH_SHORT).show()
         }
 
+        navPharmacy.setOnClickListener {
+
+            Toast.makeText(this, "You are already on the Pharmacy Page!", Toast.LENGTH_SHORT).show()
+        }
+
+        navEChanneling.setOnClickListener {
+
+            val intent = Intent(this, EBookingActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        navAccount.setOnClickListener {
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         findViewById<CardView>(R.id.btnAddCetaphil).setOnClickListener { saveToDatabase("Cetaphil Cleanser", 4650.00, "125 ml") }
         findViewById<CardView>(R.id.btnAddNeutrogena).setOnClickListener { saveToDatabase("Neutrogena Gel", 5250.00, "50 g") }

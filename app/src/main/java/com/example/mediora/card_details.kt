@@ -39,23 +39,23 @@ class CardDetailsActivity : AppCompatActivity() {
 
 
 
-        findViewById<LinearLayout>(R.id.navHome).setOnClickListener {
+        // LinearLayout වෙනුවට ImageView විදිහට හරියටම දුන්නා
+        findViewById<ImageView>(R.id.navHome).setOnClickListener {
             startActivity(Intent(this, home::class.java))
         }
 
-        findViewById<LinearLayout>(R.id.navPharmacy).setOnClickListener {
+        findViewById<ImageView>(R.id.navPharmacy).setOnClickListener {
             startActivity(Intent(this, PharmacyActivity::class.java))
         }
 
-        findViewById<LinearLayout>(R.id.navEChanneling).setOnClickListener {
+        findViewById<ImageView>(R.id.navEChanneling).setOnClickListener {
             startActivity(Intent(this, EBookingActivity::class.java))
         }
 
-        findViewById<LinearLayout>(R.id.navAccount).setOnClickListener {
+        findViewById<ImageView>(R.id.navAccount).setOnClickListener {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
-    }
-
+        }
 
     private fun validateFields(etCard: EditText, etExp: EditText, etCCV: EditText): Boolean {
         if (etCard.text.toString().isEmpty()) {
