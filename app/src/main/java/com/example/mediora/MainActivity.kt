@@ -17,16 +17,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Login වෙලාද බලන්න
+
         val sharedPreferences = getSharedPreferences("MedioraPrefs", MODE_PRIVATE)
         val loggedUser = sharedPreferences.getString("LOGGED_USER", null)
 
         if (loggedUser == null) {
-            // Login වෙලා නැත්නම් LoginActivity එකට යවන්න
+
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         } else {
-            // Login වෙලා නම් පමණක් Compose Screen ටික පෙන්වන්න
             setContent {
                 MedioraTheme {
                     AppNavigation()
@@ -40,44 +39,40 @@ class MainActivity : ComponentActivity() {
 fun AppNavigation() {
     val navController = rememberNavController()
 
-                        NavHost(
-                            navController = navController,
-                            startDestination = "home_screen"
-                        ) {
-                            // 🏠 E-Booking Screen
-                            composable("home_screen") {
-                                EBookingScreen(navController = navController)
-                            }
 
-                            // 🩺 Doctor Screen
-                            composable("your_doctor_screen/{doctorId}") { backStackEntry ->
-                                val doctorId =
-                                    backStackEntry.arguments?.getString("doctorId") ?: "doc_1"
-                                YourDoctorScreen(navController = navController, doctorId = doctorId)
-                            }
+    NavHost(
+        navController = navController,
+        startDestination = "home_screen"
+    ) {
+        // 🏠 E-Booking Screen
+        composable("home_screen") {
+            EBookingScreen(navController = navController)
+        }
 
-                            composable(
-                                route = "add_new_patient_screen/{doctorFee}/{doctorName}",
-                                arguments = listOf(
-                                    navArgument("doctorFee") { type = NavType.StringType },
-                                    navArgument("doctorName") { type = NavType.StringType }
-                                )
-                            ) { backStackEntry ->
-                                val doctorFee =
-                                    backStackEntry.arguments?.getString("doctorFee") ?: "Rs. 0/="
-                                val doctorName = backStackEntry.arguments?.getString("doctorName")
-                                    ?: "Unknown Doctor"
+        // 🩺 Doctor Screen
+        composable("your_doctor_screen/{doctorId}") { backStackEntry ->
+            val doctorId = backStackEntry.arguments?.getString("doctorId") ?: "doc_1"
+            YourDoctorScreen(navController = navController, doctorId = doctorId)
+        }
 
-                                // 🚀 ඔයාගේ AddNewPatientScreen එකට ඒ දත්ත දෙක පාස් කරනවා
-                                AddNewPatientScreen(
-                                    navController = navController,
-                                    doctorFee = doctorFee,
-                                    doctorName = doctorName
-                                )
-                            }
-                        }
+        composable(
+            route = "add_new_patient_screen/{doctorFee}/{doctorName}",
+            arguments = listOf(
+                navArgument("doctorFee") { type = NavType.StringType },
+                navArgument("doctorName") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val doctorFee = backStackEntry.arguments?.getString("doctorFee") ?: "Rs. 0/="
+            val doctorName = backStackEntry.arguments?.getString("doctorName") ?: "Unknown Doctor"
 
-    // මෙතන startDestination එකට පලවෙනියට පෙන්නන්න ඕන screen එක දෙන්න
+            AddNewPatientScreen(
+                navController = navController,
+                doctorFee = doctorFee,
+                doctorName = doctorName
+            )
+        }
+    }
+
     NavHost(navController = navController, startDestination = "home_screen") {
         composable("home_screen") {
             EBookingScreen(navController = navController)

@@ -41,16 +41,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 
-
 class EBookingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
 
-
             NavHost(navController = navController, startDestination = "ebooking_home") {
-
                 composable("ebooking_home") {
                     EBookingScreen(navController = navController)
                 }
@@ -64,24 +61,14 @@ class EBookingActivity : ComponentActivity() {
                 }
 
                 composable(
-                    route = "add_new_patient_screen/{doctorFee}/{doctorName}/{patientName}",
+                    route = "add_new_patient_screen/{doctorFee}/{doctorName}",
                     arguments = listOf(
                         navArgument("doctorFee") { type = NavType.StringType },
-                        navArgument("doctorName") { type = NavType.StringType },
-                        navArgument("patientName") { type = NavType.StringType }
+                        navArgument("doctorName") { type = NavType.StringType }
                     )
                 ) { backStackEntry ->
                     val doctorFee = backStackEntry.arguments?.getString("doctorFee") ?: "Rs. 0/="
                     val doctorName = backStackEntry.arguments?.getString("doctorName") ?: "Unknown Doctor"
-                    val patName = java.net.URLDecoder.decode(backStackEntry.arguments?.getString("patientName") ?: "", "UTF-8")
-
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = androidx.compose.ui.Alignment.Center
-                    ) {
-                        Text(
-                            text = "Payment Page\nFee: ${doctorFee}fee\nDoctor: ${doctorName}Name\nPatient: $patName", fontSize = 20.sp)
-                    }
 
                     AddNewPatientScreen(
                         navController = navController,
@@ -89,12 +76,10 @@ class EBookingActivity : ComponentActivity() {
                         doctorName = doctorName
                     )
                 }
-
             }
         }
     }
 }
-
 
 val DarkBlue = Color(0xFF1B1D4A)
 val PrimaryBlue = Color(0xFF3F51B5)
@@ -114,7 +99,6 @@ data class BookingItemData(
     val title: String,
     val icon: ImageVector = Icons.Default.DateRange
 )
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -170,16 +154,28 @@ fun EBookingScreen(navController: NavController) {
         matchesCategory && matchesSearch
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(LightBackground)
+    Scaffold(
+        bottomBar = {
+            val context = LocalContext.current
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 40.dp)
+            ) {
+                BookingBottomBar(
+                    selectedTab = selectedTab,
+                    onTabSelected = { newTab ->
+                        selectedTab = newTab
 
-    ) {
+                    }
+                )
+            }
+        }
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = 80.dp)
+                .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
         ) {
             HeaderSection(navController = navController)
@@ -311,19 +307,13 @@ fun EBookingScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(24.dp))
         }
-
-        Box(modifier = Modifier.align(Alignment.BottomCenter)) {
-            BookingBottomBar(
-                selectedTab = selectedTab,
-                onTabSelected = { newTab -> selectedTab = newTab }
-            )
-        }
     }
 }
 
-
 @Composable
 fun HeaderSection(navController: NavController) {
+    val context = LocalContext.current
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -352,7 +342,11 @@ fun HeaderSection(navController: NavController) {
             modifier = Modifier
                 .size(32.dp)
                 .clip(CircleShape)
-                .clickable { /* Action */ },
+                .clickable {
+                    // 🔔 Notification Icon එක ක්ලික් කරපු ගමන් ඔයාගේ Notification Activity එකට යනවා:
+                    val intent = Intent(context, Notification::class.java)
+                    context.startActivity(intent)
+                },
             contentScale = ContentScale.Crop
         )
     }
@@ -388,7 +382,6 @@ fun FeaturedDoctorCardItem(id: String, name: String, specialty: String, imageRes
         modifier = modifier
             .height(120.dp)
             .shadow(3.dp, shape = RoundedCornerShape(24.dp))
-
             .clickable { navController.navigate("your_doctor_screen/$id") },
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = IconBackgroundBlue)
@@ -502,13 +495,6 @@ fun TopDoctorsHeader() {
             Spacer(modifier = Modifier.width(6.dp))
             Text("Top Doctors", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = PrimaryBlue)
         }
-        Image(
-            painter = painterResource(id = R.drawable.chatbot),
-            contentDescription = "Chatbot Icon",
-            modifier = Modifier
-                .size(30.dp)
-                .clickable { /* Action */ }
-        )
     }
 }
 
@@ -562,7 +548,6 @@ fun TopDoctorCardItem(id: String, name: String, specialty: String, imageRes: Int
                     painter = painterResource(id = imageRes),
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
-
                     contentScale = ContentScale.Crop
                 )
             }
@@ -731,7 +716,6 @@ fun BookingItem(booking: BookingItemData, onDelete: () -> Unit, onEditSelect: ()
 
 @Composable
 fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
-
     val context = LocalContext.current
 
     Card(
@@ -747,16 +731,23 @@ fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            BottomNavItem(R.drawable.home, "Home", selectedTab == "Home") { onTabSelected("Home") }
-
+            BottomNavItem(R.drawable.home, "Home", selectedTab == "Home") {
+                onTabSelected("Home")
+                context.startActivity(Intent(context, home::class.java))
+            }
 
             BottomNavItem(R.drawable.pharmacy, "Pharmacy", selectedTab == "Pharmacy") {
                 onTabSelected("Pharmacy")
                 context.startActivity(Intent(context, PharmacyActivity::class.java))
             }
 
-            BottomNavItem(R.drawable.echannel, "E-Channeling", selectedTab == "E-Channeling") { onTabSelected("E-Channeling") }
-            BottomNavItem(R.drawable.account, "Account", selectedTab == "Account") { onTabSelected("Account") }
+            BottomNavItem(R.drawable.echannel, "E-Channeling", selectedTab == "E-Channeling") {
+                onTabSelected("E-Channeling")
+            }
+
+            BottomNavItem(R.drawable.account, "Account", selectedTab == "Account") {
+                onTabSelected("Account")
+            }
         }
     }
 }

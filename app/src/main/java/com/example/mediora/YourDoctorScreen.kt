@@ -1,3 +1,4 @@
+
 package com.example.mediora
 
 import androidx.compose.foundation.Image
@@ -424,21 +425,7 @@ fun YourDoctorScreen(navController: NavController, doctorId: String) {
 
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // 🤖 Chatbot Icon
-                    Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.chatbot),
-                            contentDescription = "Chatbot",
-                            modifier = Modifier
-                                .size(55.dp)
-                                .clip(CircleShape)
-                                .shadow(2.dp, CircleShape)
-                                .clickable { /* Action */ }
-                        )
-                    }
+
 
                     Spacer(modifier = Modifier.height(20.dp))
 
