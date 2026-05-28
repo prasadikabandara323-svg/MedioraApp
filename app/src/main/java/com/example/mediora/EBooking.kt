@@ -301,7 +301,6 @@ fun EBookingScreen(navController: NavController) {
     }
 }
 
-// ඉතිරි සියලුම Functions (HeaderSection, FeaturedDoctorCards, ආදිය) කිසිදු වෙනසක් නොමැතිව පහතින් එකතු කරන්න...
 @Composable
 fun HeaderSection(navController: NavController) {
     val context = LocalContext.current
@@ -536,48 +535,62 @@ fun BookingItem(booking: BookingItemData, onDelete: () -> Unit, onEditSelect: ()
     }
 }
 
+
 @Composable
 fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
     val context = LocalContext.current
-    Card(
-        modifier = Modifier.fillMaxWidth().height(72.dp),
-        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFD0E8F2)),
-        elevation = CardDefaults.cardElevation(8.dp)
-    ) {
-        Row(modifier = Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
-            BottomNavItem(R.drawable.home, "Home", selectedTab == "Home") {
-                onTabSelected("Home")
-                context.startActivity(Intent(context, home::class.java))
-            }
-            BottomNavItem(R.drawable.pharmacy, "Pharmacy", selectedTab == "Pharmacy") {
-                onTabSelected("Pharmacy")
-                context.startActivity(Intent(context, PharmacyActivity::class.java))
-            }
-            BottomNavItem(R.drawable.echannel, "E-Channeling", selectedTab == "E-Channeling") {
-                onTabSelected("E-Channeling")
-            }
-            BottomNavItem(R.drawable.account, "Account", selectedTab == "Account") {
-                onTabSelected("Account")
-            }
-        }
-    }
-}
 
-@Composable
-fun BottomNavItem(imageResId: Int, label: String, isSelected: Boolean, onClick: () -> Unit) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.clickable { onClick() }.padding(4.dp)
+    NavigationBar(
+        containerColor = Color(0xFFBCE3F7),
+        tonalElevation = 8.dp,
+        modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
     ) {
-        Image(
-            painter = painterResource(id = imageResId),
-            contentDescription = label,
-            modifier = if (isSelected) Modifier.size(36.dp).background(PrimaryBlue, CircleShape).padding(6.dp) else Modifier.size(26.dp),
-            contentScale = ContentScale.Fit
+        val items = listOf(
+            Triple(R.drawable.home, "Home", home::class.java),
+            Triple(R.drawable.pharmacy, "Pharmacy", PharmacyActivity::class.java),
+            Triple(R.drawable.echannel, "E-Channeling", null),
+            Triple(first = R.drawable.account, second = "Account", third = ProfileActivity::class.java)
         )
-        Spacer(modifier = Modifier.height(2.dp))
-        Text(text = label, fontSize = 11.sp, color = PrimaryBlue)
+
+        items.forEach { (imageResId, label, activityClass) ->
+            val isSelected = selectedTab == label
+            NavigationBarItem(
+                selected = isSelected,
+                onClick = {
+                    onTabSelected(label)
+                    activityClass?.let {
+                        context.startActivity(Intent(context, it))
+                    }
+                },
+                icon = {
+                    Image(
+                        painter = painterResource(id = imageResId),
+                        contentDescription = label,
+                        modifier = if (isSelected) {
+                            Modifier
+                                .size(34.dp)
+                                .background(PrimaryBlue, CircleShape)
+                                .padding(6.dp)
+                        } else {
+                            Modifier.size(24.dp)
+                        },
+                        contentScale = ContentScale.Fit
+                    )
+                },
+                label = {
+                    Text(
+                        text = label,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = PrimaryBlue,
+                        maxLines = 1
+                    )
+                },
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = Color.Transparent
+                )
+            )
+        }
     }
 }
 

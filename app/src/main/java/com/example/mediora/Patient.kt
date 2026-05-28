@@ -11,6 +11,6 @@ data class Patient(
     val contactNumber: String,
     val reasonForVisit: String,
     val previousRecords: String?,
-    val emergencyContact: String, // 👈 අලුත් Field එක
-    val nicNumber: String         // 👈 අලුත් Field එක
+    val emergencyContact: String,
+    val nicNumber: String
 )
