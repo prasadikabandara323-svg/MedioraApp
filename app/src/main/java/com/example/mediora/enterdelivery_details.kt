@@ -128,6 +128,7 @@ class enterdelivery_details : AppCompatActivity() {
 
                     val intent = Intent(this@enterdelivery_details, CardDetailsActivity::class.java)
                     startActivity(intent)
+
                     finish()
                 }
             }
