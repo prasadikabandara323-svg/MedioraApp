@@ -5,13 +5,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.view.LayoutInflater
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import java.util.Timer
 import java.util.TimerTask
-import android.widget.Toast
 
 class home : AppCompatActivity() {
 
@@ -19,22 +18,61 @@ class home : AppCompatActivity() {
     private lateinit var ivScan: ImageView
     private lateinit var ivMail: ImageView
     private lateinit var ivAccount: ImageView
-    private lateinit var btnEmergency: LinearLayout // Emergency button එක සඳහා
+    private lateinit var btnEmergency: LinearLayout
+    private lateinit var btnMenu: ImageView
 
     private var handler = Handler(Looper.getMainLooper())
     private var timer: Timer? = null
 
     private val images = intArrayOf(
-        R.drawable.pramo1,
-        R.drawable.pramo2,
-        R.drawable.pramo3,
-        R.drawable.pramo4,
-
-        )
+        R.drawable.pramo1, R.drawable.pramo2, R.drawable.pramo3, R.drawable.pramo4
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        // Menu Icon setup (Custom PopupWindow)
+        btnMenu = findViewById(R.id.btnMenu)
+        btnMenu.setOnClickListener {
+            val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val popupView = inflater.inflate(R.layout.popup_menu_layout, null, false)
+            // උස වැඩි කර ගැනීමට 1300 ලෙස ලබා දී ඇත, අවශ්‍ය නම් මෙය වෙනස් කරන්න
+            val popupWindow = PopupWindow(popupView, 300, 1300, true)
+
+            popupWindow.elevation = 10f
+            popupWindow.showAsDropDown(btnMenu, 0, 20)
+
+            // අයිතම වලට click listeners
+            popupView.findViewById<LinearLayout>(R.id.menu_home).setOnClickListener { startActivity(Intent(this, home::class.java)); popupWindow.dismiss() }
+            popupView.findViewById<LinearLayout>(R.id.menu_pharmacy).setOnClickListener { startActivity(Intent(this, PharmacyActivity::class.java)); popupWindow.dismiss() }
+            popupView.findViewById<LinearLayout>(R.id.menu_profile).setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)); popupWindow.dismiss() }
+            popupView.findViewById<LinearLayout>(R.id.menu_scancode).setOnClickListener { startActivity(Intent(this, ScancodeActivity::class.java)); popupWindow.dismiss() }
+            popupView.findViewById<LinearLayout>(R.id.menu_ebooking).setOnClickListener { startActivity(Intent(this, EBookingActivity::class.java)); popupWindow.dismiss() }
+
+            // නිවැරදි කරන ලද M Med, Chat සහ Review Listeners
+            popupView.findViewById<LinearLayout>(R.id.menu_mymed).setOnClickListener { startActivity(Intent(this, Mymed::class.java)); popupWindow.dismiss() }
+            popupView.findViewById<LinearLayout>(R.id.menu_chat).setOnClickListener { startActivity(Intent(this, ChatPageActivity::class.java)); popupWindow.dismiss() }
+            popupView.findViewById<LinearLayout>(R.id.menu_review).setOnClickListener { startActivity(Intent(this, ReviewActivity::class.java)); popupWindow.dismiss() }
+
+            popupView.findViewById<LinearLayout>(R.id.menu_setting).setOnClickListener { startActivity(Intent(this, SettingsActivity::class.java)); popupWindow.dismiss() }
+            popupView.findViewById<LinearLayout>(R.id.menu_about).setOnClickListener { startActivity(Intent(this, AboutUsActivity::class.java)); popupWindow.dismiss() }
+
+            // Logout බොත්තම - මුළු App එකෙන්ම Logout වීමට
+            popupView.findViewById<LinearLayout>(R.id.menu_logout).setOnClickListener {
+                Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show()
+
+                // LoginActivity යනු ඔබගේ login page එකේ Activity එකයි
+                val intent = Intent(this, LoginActivity::class.java)
+
+                // පැරණි සියලුම Activity ඉවත් කර Login පිටුව පමණක් පෙන්වීමට
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                startActivity(intent)
+                finish()
+                popupWindow.dismiss()
+            }
+        }
 
         // 1. Promo Slider
         promoSlider = findViewById(R.id.promoSlider)
@@ -44,107 +82,45 @@ class home : AppCompatActivity() {
 
         // 2. Scan Icon
         ivScan = findViewById(R.id.btnScan)
-        ivScan.setOnClickListener {
-            val intent = Intent(this, ScancodeActivity::class.java)
-            startActivity(intent)
-        }
+        ivScan.setOnClickListener { startActivity(Intent(this, ScancodeActivity::class.java)) }
 
         ivMail = findViewById(R.id.btnMail)
-        ivMail.setOnClickListener {
-            val intent = Intent(this, Notification::class.java)
-            startActivity(intent)
-        }
+        ivMail.setOnClickListener { startActivity(Intent(this, Notification::class.java)) }
 
         // 4. Setting Icon
         ivAccount = findViewById(R.id.btnAccount)
-        ivAccount.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
+        ivAccount.setOnClickListener { startActivity(Intent(this, SettingsActivity::class.java)) }
 
-        val btnAboutUs = findViewById<LinearLayout>(R.id.btnAboutUs)
-        btnAboutUs.setOnClickListener {
-            val intent = Intent(this, AboutUsActivity::class.java)
-            startActivity(intent)
-        }
-
-
-
-
-
-        val btnBookAppointment = findViewById<ImageView>(R.id.btnBookAppointment)
-
-        btnBookAppointment.setOnClickListener {
-            val intent = Intent(this, EBookingActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Medication Reminder බොත්තම
-        val btnMedicationReminder = findViewById<ImageView>(R.id.imgMedicationReminder)
-        btnMedicationReminder.setOnClickListener {
-            val intent = Intent(this, PharmacyActivity::class.java)
-            startActivity(intent)
-        }
-
-
-        val imgHealthProfile = findViewById<ImageView>(R.id.imgHealthProfile)
-        imgHealthProfile?.setOnClickListener {
-            val userEmail = "User's Email"
-
+        findViewById<LinearLayout>(R.id.btnAboutUs).setOnClickListener { startActivity(Intent(this, AboutUsActivity::class.java)) }
+        findViewById<ImageView>(R.id.btnBookAppointment).setOnClickListener { startActivity(Intent(this, EBookingActivity::class.java)) }
+        findViewById<ImageView>(R.id.imgMedicationReminder).setOnClickListener { startActivity(Intent(this, PharmacyActivity::class.java)) }
+        findViewById<ImageView>(R.id.imgHealthProfile).setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
-
-            intent.putExtra("USER_EMAIL", userEmail)
-
-            startActivity(intent)
-
-        }
-
-        val navPharmacy = findViewById<LinearLayout>(R.id.navPharmacy)
-        navPharmacy.setOnClickListener {
-            val intent = Intent(this, PharmacyActivity::class.java)
+            intent.putExtra("USER_EMAIL", "User's Email")
             startActivity(intent)
         }
 
-        val navEChanneling = findViewById<LinearLayout>(R.id.navEChanneling)
-        navEChanneling.setOnClickListener {
-            val intent = Intent(this, EBookingActivity::class.java)
-            startActivity(intent)
-        }
-
-        val navAccount = findViewById<LinearLayout>(R.id.navAccount)
-        navAccount.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java) // හෝ ඔබේ AccountActivity එක
-            startActivity(intent)
-        }
-
-        val navHome = findViewById<LinearLayout>(R.id.navHome)
-        navHome.setOnClickListener {
-            // දැනටමත් Home පිටුවේ සිටින නිසා පණිවිඩයක් පෙන්වයි
-            Toast.makeText(this, "You are already on the home page", Toast.LENGTH_SHORT).show()
-        }
-
-
+        findViewById<LinearLayout>(R.id.navPharmacy).setOnClickListener { startActivity(Intent(this, PharmacyActivity::class.java)) }
+        findViewById<LinearLayout>(R.id.navEChanneling).setOnClickListener { startActivity(Intent(this, EBookingActivity::class.java)) }
+        findViewById<LinearLayout>(R.id.navAccount).setOnClickListener { startActivity(Intent(this, ProfileActivity::class.java)) }
+        findViewById<LinearLayout>(R.id.navHome).setOnClickListener { Toast.makeText(this, "Already on home", Toast.LENGTH_SHORT).show() }
 
         // 5. Emergency Icon
         btnEmergency = findViewById(R.id.btnEmergency)
         btnEmergency.setOnClickListener {
-            val phoneNumber = "1990"
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:$phoneNumber")
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:1990"))
             startActivity(intent)
         }
     }
 
     private fun startAutoSlide() {
-        val update = Runnable {
-            val nextItem = (promoSlider.currentItem + 1) % images.size
-            promoSlider.setCurrentItem(nextItem, true)
-        }
-
         timer = Timer()
         timer?.schedule(object : TimerTask() {
             override fun run() {
-                handler.post(update)
+                handler.post {
+                    val nextItem = (promoSlider.currentItem + 1) % images.size
+                    promoSlider.setCurrentItem(nextItem, true)
+                }
             }
         }, 3000, 3000)
     }

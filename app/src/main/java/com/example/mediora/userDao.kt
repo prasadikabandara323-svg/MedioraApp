@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update // මෙය අනිවාර්යයෙන් import කරන්න
+import androidx.room.Update
 
 @Dao
 interface UserDao {
@@ -14,8 +14,9 @@ interface UserDao {
     @Update
     suspend fun updateUser(user: User)
 
+    // මුරපදය යාවත්කාලීන කිරීම සඳහා එකතු කළ නව කොටස
+    @Query("UPDATE users SET password = :newPassword WHERE email = :email")
+    suspend fun updatePassword(email: String, newPassword: String)
     @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
     suspend fun getUserByEmail(email: String): User?
-
-
 }

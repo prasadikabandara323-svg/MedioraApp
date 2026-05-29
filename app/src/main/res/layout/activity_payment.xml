@@ -15,7 +15,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/arrow2"
+            android:src="@drawable/arrow"
             android:contentDescription="Back" />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:text="Payment" android:textColor="#0E3982" android:textSize="30sp" android:textStyle="bold" />
         <ImageView
@@ -24,7 +24,7 @@
             android:layout_height="38dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/mail2"
+            android:src="@drawable/mail"
             android:contentDescription="Mail" />
     </RelativeLayout>
 
@@ -46,7 +46,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@drawable/home2"
+                android:src="@drawable/home"
                 android:contentDescription="Home" />
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@drawable/plus"
+                android:src="@drawable/pharmacy"
                 android:contentDescription="Pharmacy" />
             <TextView
                 android:layout_width="wrap_content"
@@ -74,8 +74,15 @@
                 android:textColor="#0E3982"
                 android:textSize="12sp" />
         </LinearLayout>
-        <LinearLayout android:id="@+id/navEChanneling" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/chanel" android:contentDescription="E-Channeling" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#0E3982" android:textSize="10sp" /></LinearLayout>
-        <LinearLayout android:id="@+id/navAccount" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/account1" android:contentDescription="Account" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
+        <LinearLayout
+            android:id="@+id/navEChanneling"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/echaneling" android:contentDescription="E-Channeling" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#0E3982" android:textSize="10sp" /></LinearLayout>
+        <LinearLayout android:id="@+id/navAccount" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/account" android:contentDescription="Account" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
     </LinearLayout>
 
     <ScrollView

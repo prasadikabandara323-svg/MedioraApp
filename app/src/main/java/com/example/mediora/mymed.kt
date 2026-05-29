@@ -25,7 +25,6 @@ class Mymed : AppCompatActivity() {
     private lateinit var txtTakenStatus: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(androidx.appcompat.R.style.Theme_AppCompat_Light_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mymed)
 
@@ -53,16 +52,7 @@ class Mymed : AppCompatActivity() {
         displayMedsList.addAll(allMedsList)
         updateMedsUI()
 
-        // Search Suggestions
-        edtSearchMeds.setOnClickListener { view ->
-            val popup = PopupMenu(this, view)
-            for (medName in quickDoctorMedsSuggestions) popup.menu.add(medName)
-            popup.setOnMenuItemClickListener { item ->
-                showQuickAddDialog(item.title.toString())
-                true
-            }
-            popup.show()
-        }
+        setupBottomNavigation()
 
         btnAddMed.setOnClickListener { showMedDialog(false) }
         btnEditMed.setOnClickListener {
@@ -77,23 +67,34 @@ class Mymed : AppCompatActivity() {
                 updateMedsUI()
             } else Toast.makeText(this, "Select a medicine to delete!", Toast.LENGTH_SHORT).show()
         }
-
-        // Bottom Navigation Logic
-        val layoutBottomNav = findViewById<LinearLayout>(R.id.layoutBottomNav)
-        val navItems = arrayOf("Home", "Pharmacy", "E-Channeling", "Account")
-        for (i in 0 until layoutBottomNav.childCount) {
-            layoutBottomNav.getChildAt(i).setOnClickListener {
-                Toast.makeText(this, "${navItems[i]} page coming soon...", Toast.LENGTH_SHORT).show()
-            }
-        }
-
         btnBack.setOnClickListener { finish() }
+    }
+
+    private fun setupBottomNavigation() {
+        val layoutBottomNav = findViewById<LinearLayout>(R.id.layoutBottomNav)
+        val btnHome = layoutBottomNav.getChildAt(0)
+        val btnPharmacy = layoutBottomNav.getChildAt(1)
+        val btnEChanneling = layoutBottomNav.getChildAt(2)
+        val btnAccount = layoutBottomNav.getChildAt(3)
+
+        btnHome.setOnClickListener { navigateTo(home::class.java) }
+        btnPharmacy.setOnClickListener { navigateTo(PharmacyActivity::class.java) }
+        btnEChanneling.setOnClickListener { navigateTo(EBookingActivity::class.java) }
+        btnAccount.setOnClickListener { navigateTo(ProfileActivity::class.java) }
+    }
+
+    private fun navigateTo(activityClass: Class<*>) {
+        if (this::class.java != activityClass) {
+            val intent = Intent(this, activityClass)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun updateMedsUI() {
         containerLayout.removeAllViews()
         var takenCount = 0
-        for (i in 0 until displayMedsList.size) {
+        for (i in displayMedsList.indices) {
             val med = displayMedsList[i]
             if (med.isTaken) takenCount++
 
@@ -101,7 +102,6 @@ class Mymed : AppCompatActivity() {
                 layoutParams = LinearLayout.LayoutParams(-1, -2).apply { setMargins(0, 0, 0, 16) }
                 setPadding(40, 45, 40, 45)
                 setBackgroundColor(if (i == selectedPosition) Color.parseColor("#0E3982") else Color.parseColor("#2BBED4"))
-                alpha = if (med.isTaken) 0.6f else 1.0f
             }
 
             val txtNameAndDose = TextView(this).apply {
@@ -109,22 +109,10 @@ class Mymed : AppCompatActivity() {
                 setTextColor(Color.WHITE)
                 textSize = 16f
                 setTypeface(null, Typeface.BOLD)
-                if (med.isTaken) paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            }
-
-            val txtTime = TextView(this).apply {
-                text = if (med.isTaken) "${med.time} (Taken)" else med.time
-                setTextColor(Color.WHITE)
-                layoutParams = RelativeLayout.LayoutParams(-2, -2).apply {
-                    addRule(RelativeLayout.ALIGN_PARENT_END)
-                    addRule(RelativeLayout.CENTER_VERTICAL)
-                }
             }
 
             rowView.addView(txtNameAndDose)
-            rowView.addView(txtTime)
             rowView.setOnClickListener { selectedPosition = if (selectedPosition == i) -1 else i; updateMedsUI() }
-            rowView.setOnLongClickListener { med.isTaken = !med.isTaken; updateMedsUI(); true }
             containerLayout.addView(rowView)
         }
         txtTakenStatus.text = "$takenCount/${displayMedsList.size} taken today"
@@ -148,22 +136,15 @@ class Mymed : AppCompatActivity() {
         builder.setPositiveButton("Save") { _, _ ->
             if (isEdit) {
                 val med = displayMedsList[selectedPosition]
-                med.name = edtName.text.toString(); med.dose = edtDose.text.toString(); med.time = edtTime.text.toString()
-            } else allMedsList.add(Medicine(edtName.text.toString(), edtDose.text.toString(), edtTime.text.toString()))
-            displayMedsList.clear(); displayMedsList.addAll(allMedsList); updateMedsUI()
-        }
-        builder.show()
-    }
-
-    private fun showQuickAddDialog(medName: String) {
-        val builder = AlertDialog.Builder(this)
-        val layout = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(50, 40, 50, 40) }
-        val edtDose = EditText(this).apply { hint = "Dose" }; val edtTime = EditText(this).apply { hint = "Time" }
-        layout.addView(edtDose); layout.addView(edtTime)
-        builder.setView(layout)
-        builder.setPositiveButton("Add") { _, _ ->
-            allMedsList.add(Medicine(medName, edtDose.text.toString(), edtTime.text.toString()))
-            displayMedsList.clear(); displayMedsList.addAll(allMedsList); updateMedsUI()
+                med.name = edtName.text.toString()
+                med.dose = edtDose.text.toString()
+                med.time = edtTime.text.toString()
+            } else {
+                allMedsList.add(Medicine(edtName.text.toString(), edtDose.text.toString(), edtTime.text.toString()))
+                displayMedsList.clear()
+                displayMedsList.addAll(allMedsList)
+            }
+            updateMedsUI()
         }
         builder.show()
     }

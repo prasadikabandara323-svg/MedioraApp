@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_home" android:title="Home" />
+    <item android:id="@+id/menu_pharmacy" android:title="Pharmacy" />
+    <item android:id="@+id/menu_profile" android:title="Health Profile" />
+    <item android:id="@+id/menu_scancode" android:title="Scancode" />
+    <item android:id="@+id/menu_ebooking" android:title="E-Booking" />
+    <item android:id="@+id/chatpage" android:title="Chat With Your Doctor" />
+    <item android:id="@+id/menu_mymed" android:title="MY Med" />
+    <item android:id="@+id/menu_about" android:title="About Us" />
+    <item android:id="@+id/menu_setting" android:title="Stting" />
+    <item android:id="@+id/menu_review" android:title="Review" />
+
+
+
+</menu>

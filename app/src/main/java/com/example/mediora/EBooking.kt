@@ -548,7 +548,7 @@ fun BookingBottomBar(selectedTab: String, onTabSelected: (String) -> Unit) {
         val items = listOf(
             Triple(R.drawable.home, "Home", home::class.java),
             Triple(R.drawable.pharmacy, "Pharmacy", PharmacyActivity::class.java),
-            Triple(R.drawable.echannel, "E-Channeling", null),
+            Triple(R.drawable.echaneling, "E-Channeling", null),
             Triple(first = R.drawable.account, second = "Account", third = ProfileActivity::class.java)
         )
 

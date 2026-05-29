@@ -381,7 +381,7 @@ fun AddNewPatientScreen(
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
-                                painter = painterResource(id = R.drawable.echannel),
+                                painter = painterResource(id = R.drawable.echaneling),
                                 contentDescription = null,
                                 tint = Color(0xFF2E7D32),
                                 modifier = Modifier.size(20.dp)

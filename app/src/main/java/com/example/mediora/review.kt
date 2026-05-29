@@ -23,31 +23,28 @@ class ReviewActivity : AppCompatActivity() {
         val btnBack = findViewById<ImageView>(R.id.btnBack)
         val btnSendFeedback = findViewById<ImageView>(R.id.btnSendFeedback)
 
-        // 2. Bottom Navigation Bar Components
-        val navHome = findViewById<LinearLayout>(R.id.navHomeLayout)
-        val navPharmacy = findViewById<LinearLayout>(R.id.navPharmacyLayout)
-        val navChanneling = findViewById<LinearLayout>(R.id.navChannelingLayout)
-        val navAccount = findViewById<LinearLayout>(R.id.navSearchLayout)
-
-        // 3. Navigation Click Listeners
-        navHome.setOnClickListener {
-            Toast.makeText(this, "Navigating to Home", Toast.LENGTH_SHORT).show()
-            // start activity here if needed
+        // 2. Bottom Navigation Bar Listeners (සම්පූර්ණ කරන ලදී)
+        findViewById<LinearLayout>(R.id.navHomeLayout).setOnClickListener {
+            startActivity(Intent(this, home::class.java))
+            finish()
         }
 
-        navPharmacy.setOnClickListener {
-            Toast.makeText(this, "Navigating to Pharmacy", Toast.LENGTH_SHORT).show()
+        findViewById<LinearLayout>(R.id.navPharmacyLayout).setOnClickListener {
+            startActivity(Intent(this, PharmacyActivity::class.java))
+            finish()
         }
 
-        navChanneling.setOnClickListener {
-            Toast.makeText(this, "Navigating to E-Channeling", Toast.LENGTH_SHORT).show()
+        findViewById<LinearLayout>(R.id.navChannelingLayout).setOnClickListener {
+            startActivity(Intent(this, EBookingActivity::class.java))
+            finish()
         }
 
-        navAccount.setOnClickListener {
-            Toast.makeText(this, "Navigating to Account", Toast.LENGTH_SHORT).show()
+        findViewById<LinearLayout>(R.id.navSearchLayout).setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
         }
 
-        // 4. Existing Logic
+        // 3. Existing Review Logic
         ratingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { _, rating, _ ->
             txtRatingValue.text = rating.toString()
         }

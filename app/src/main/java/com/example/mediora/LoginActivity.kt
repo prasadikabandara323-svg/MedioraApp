@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -21,10 +23,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Password Toggle Setup
+        val passwordLayout = findViewById<TextInputLayout>(R.id.passwordLayout)
+        val passwordInput = findViewById<TextInputEditText>(R.id.etPassword)
+        passwordLayout.isPasswordVisibilityToggleEnabled = true
+
         db = AppDatabase.getDatabase(this)
 
         val edtEmail = findViewById<EditText>(R.id.etEmail)
-        val edtPassword = findViewById<EditText>(R.id.etPassword)
+        val edtPassword = findViewById<TextInputEditText>(R.id.etPassword) // ID එක etPassword ලෙසම තබා ඇත
         val btnLogIn = findViewById<Button>(R.id.btnLogin)
         val tvSignUpLink = findViewById<TextView>(R.id.tvSignUp)
         val tvForgotPassword = findViewById<TextView>(R.id.tvForgetPassword)

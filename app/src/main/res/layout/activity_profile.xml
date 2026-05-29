@@ -8,15 +8,17 @@
     <RelativeLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
         android:background="#FFD0E8F2"
-        android:paddingHorizontal="15dp">
+        android:padding="15dp">
+
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/arrow2" />
+            android:src="@drawable/arrow" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,22 +32,89 @@
     <LinearLayout
         android:id="@+id/layoutBottomNav"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#FFD0E9F3"
         android:orientation="horizontal"
+        android:paddingVertical="8dp"
         android:weightSum="4">
-        <LinearLayout android:id="@+id/navHome" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/home2" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Home" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
-        <LinearLayout android:id="@+id/navPharmacy" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/plus" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pharmacy" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
-        <LinearLayout android:id="@+id/navEChanneling" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/chanel" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E-Channeling" android:textColor="#0E3982" android:textSize="10sp" /></LinearLayout>
-        <LinearLayout android:id="@+id/navAccount" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><ImageView android:layout_width="26dp" android:layout_height="26dp" android:src="@drawable/account1" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account" android:textColor="#0E3982" android:textSize="12sp" /></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/home" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#0E3982"
+                android:textSize="12sp" /></LinearLayout>
+        <LinearLayout
+            android:id="@+id/navPharmacy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/pharmacy" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pharmacy"
+                android:textColor="#0E3982"
+                android:textSize="12sp" /></LinearLayout>
+        <LinearLayout
+            android:id="@+id/navEChanneling"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/echaneling" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-Channeling"
+                android:textColor="#0E3982"
+                android:textSize="10sp" /></LinearLayout>
+        <LinearLayout
+            android:id="@+id/navAccount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/account" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textColor="#0E3982"
+                android:textSize="12sp" /></LinearLayout>
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/layoutHeader"
-        android:layout_above="@id/layoutBottomNav">
+        android:layout_above="@id/layoutBottomNav"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,8 +173,8 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <Button android:id="@+id/btnEditProfile" android:layout_width="match_parent" android:layout_height="60dp" android:layout_marginTop="20dp" android:text="EDIT PROFILE" android:backgroundTint="#0E3982" app:cornerRadius="15dp" />
-            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="60dp" android:layout_marginTop="10dp" android:text="LOG OUT" android:backgroundTint="#FF5252" app:cornerRadius="15dp" />
+            <Button android:id="@+id/btnEditProfile" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="60dp" android:layout_marginTop="20dp" android:text="EDIT PROFILE" android:backgroundTint="#0E3982" app:cornerRadius="15dp" />
+            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="60dp" android:layout_marginTop="10dp" android:text="LOG OUT" android:backgroundTint="#FF5252" app:cornerRadius="15dp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
