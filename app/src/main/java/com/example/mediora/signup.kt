@@ -38,9 +38,11 @@ class SignupActivity : AppCompatActivity() {
             val confirmPassword = edtRePassword.text.toString()
 
             if (name.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
-                Toast.makeText(this, "Please ensure all details are filled in!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please ensure all details are filled in!",
+                    Toast.LENGTH_SHORT).show()
             } else if (password != confirmPassword) {
-                Toast.makeText(this, "The passwords entered do not match!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "The passwords entered do not match!",
+                    Toast.LENGTH_SHORT).show()
             } else {
                 val newUser = User(
                     fullName = name, email = email, password = password,

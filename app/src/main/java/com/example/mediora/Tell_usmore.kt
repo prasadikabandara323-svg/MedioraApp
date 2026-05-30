@@ -68,7 +68,8 @@ class TellUsMoreActivity : AppCompatActivity() {
                     )
                     db.userDao().updateUser(updatedUser)
 
-                    android.util.Log.d("DB_UPDATE", "User updated: ${updatedUser.email} - Age: ${updatedUser.age}")
+                    android.util.Log.d("DB_UPDATE",
+                        "User updated: ${updatedUser.email} - Age: ${updatedUser.age}")
                 } else {
                     android.util.Log.e("DB_UPDATE", "User not found with email: $email")
                 }
@@ -80,7 +81,7 @@ class TellUsMoreActivity : AppCompatActivity() {
 
                     Toast.makeText(this@TellUsMoreActivity, "Details updated successfully!", Toast.LENGTH_SHORT).show()
 
-                    // දත්ත යාවත්කාලීන වූ පසු Home වෙත යවනු ලැබේ
+
                     val intent = Intent(this@TellUsMoreActivity, home::class.java)
                     intent.putExtra("USER_EMAIL", email)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
